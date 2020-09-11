@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>layout-task</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tools.css">
+</head>
+<body>
+    <header class="header" id="header">
+        header
+    </header>
+    <div class="main-content">
+        <div class="left-side-bar" id="left-bar">
+            left-bar
+        </div>
+        <div class="central-content" id="central-content">
+            central-content
+        </div>
+        <div class="right-side-bar" id="right-bar">
+            right-bar
+        </div>
+    </div>
+    <footer class="footer" id="footer">
+        footer
+    </footer>
+
+    <!--control-panels-->
+    <div class="panel">
+        <h3>Add text content</h3>
+        <div>
+            <button onclick="addContent('header')">header</button>
+            <button onclick="addContent('left-bar')">left</button>
+            <button onclick="addContent('central-content')">central</button>
+            <button onclick="addContent('right-bar')">right</button>
+            <button onclick="addContent('footer')">footer</button>
+        </div>
+    </div>
+    <div class="panel adding-html-content">
+        <h3>Add HTML content</h3>
+        <div>
+            <button onclick="addHTMLContent('header')">header</button>
+            <button onclick="addHTMLContent('left-bar')">left</button>
+            <button onclick="addHTMLContent('central-content')">central</button>
+            <button onclick="addHTMLContent('right-bar')">right</button>
+            <button onclick="addHTMLContent('footer')">footer</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
