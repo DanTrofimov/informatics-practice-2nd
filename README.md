@@ -1,2 +1,2 @@
 # informatics-practice-2nd
-class/homeworks
+rep for inf tasks
