@@ -10,9 +10,22 @@
     <header class="header" id="header">
         header
     </header>
-    <div class="main-content">
+    <main class="main-content">
         <div class="left-side-bar" id="left-bar">
-            left-bar
+            <div class="nav-wrapper">
+                <button id="nav-button" onclick="changeElementVisibility('nav-list')">navigation 🍔</button>
+                <h4 id="nav-title">navigation:</h4>
+                <ul id="nav-list">
+                    <li><a href="#header">header</a></li>
+                    <li><a href="#central-content">center</a></li>
+                    <li><a href="#footer">footer</a></li>
+                    <li><a href="#">stub link</a></li>
+                    <li><a href="#">stub link</a></li>
+                    <li><a href="#">stub link</a></li>
+                    <li><a href="#">stub link</a></li>
+                    <li><a href="#">stub link</a></li>
+                </ul>
+            </div>
         </div>
         <div class="central-content" id="central-content">
             central-content
@@ -20,7 +33,7 @@
         <div class="right-side-bar" id="right-bar">
             right-bar
         </div>
-    </div>
+    </main>
     <footer class="footer" id="footer">
         footer
     </footer>
@@ -30,7 +43,6 @@
         <h3>Add text content</h3>
         <div>
             <button onclick="addContent('header')">header</button>
-            <button onclick="addContent('left-bar')">left</button>
             <button onclick="addContent('central-content')">central</button>
             <button onclick="addContent('right-bar')">right</button>
             <button onclick="addContent('footer')">footer</button>
@@ -40,7 +52,6 @@
         <h3>Add HTML content</h3>
         <div>
             <button onclick="addHTMLContent('header')">header</button>
-            <button onclick="addHTMLContent('left-bar')">left</button>
             <button onclick="addHTMLContent('central-content')">central</button>
             <button onclick="addHTMLContent('right-bar')">right</button>
             <button onclick="addHTMLContent('footer')">footer</button>

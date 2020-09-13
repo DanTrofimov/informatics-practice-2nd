@@ -24,6 +24,8 @@ const htmlContent = `
                 </article>
 `;
 
+var showMenu = false;
+
 function addContent(idName) {
     let area = document.getElementById(idName);
     if (area.innerText.length > 100) {
@@ -34,4 +36,23 @@ function addContent(idName) {
 function addHTMLContent(idName) {
     let area = document.getElementById(idName);
     area.innerHTML = area.innerHTML + htmlContent
+}
+
+function changeElementVisibility(idName) {
+    let element = document.getElementById(idName);
+    switch (element.style.display) {
+        case 'none':
+            element.style.display = 'block';
+            break;
+        case 'block':
+            element.style.display = 'none';
+            break;
+        default:
+            element.style.display = 'block';
+    }
+
+    // close navigation after click on nav-item
+    for (let i = 0; i < element.children.length; i++) {
+        element.children[i].setAttribute('onclick', 'changeElementVisibility(\'nav-list\')')
+    }
 }

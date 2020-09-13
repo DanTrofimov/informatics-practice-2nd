@@ -48,6 +48,34 @@ header {
     background-color: #ffaa8c;
 }
 
+#nav-button {
+    display: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+}
+
+#nav-list {
+    margin-top: 20px;
+    list-style: none;
+    text-align: center;
+    display: block;
+}
+
+#nav-list > li {
+    margin-top: 5px;
+}
+
+#nav-list > li > a {
+    text-decoration: none;
+    color: black;
+}
+
+#nav-list > li > a:hover{
+    background-color: white;
+}
+
 .right-side-bar {
     max-width: 25%;
     flex-grow: 1;
@@ -76,6 +104,14 @@ footer {
     .left-side-bar {
         order: -1;
         flex-grow: 0;
+    }
+
+    #nav-list, #nav-title {
+        display: none;
+    }
+
+    #nav-button {
+        display: block;
     }
 
     .right-side-bar {

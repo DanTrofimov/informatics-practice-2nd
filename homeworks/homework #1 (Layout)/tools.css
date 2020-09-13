@@ -10,6 +10,7 @@
     position: fixed;
     bottom: 12px;
     left: 12px;
+    border: 2px #292b32 solid;
 }
 
 .card {
