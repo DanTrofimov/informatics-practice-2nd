@@ -26,6 +26,7 @@ const htmlContent = `
 
 // default theme value
 let theme = 'light';
+let coloredArea = false;
 document.styleSheets[3].disabled = true;
 
 // added functional to the menu button
@@ -56,8 +57,15 @@ function changeTheme() {
     }
 }
 
-function changeAreaBackground(childElement) {
-    childElement.parentNode.style.backgroundColor = 'black'
+function changeAreaBackground() {
+    coloredArea = !coloredArea;
+    if (!coloredArea) {
+        themeButtons[0].style.backgroundColor = "var(--header-color)";
+        themeButtons[0].parentNode.style.backgroundColor = "var(--header-color)";
+    } else {
+        themeButtons[0].style.backgroundColor = "var(--footer-color)";
+        themeButtons[0].parentNode.style.backgroundColor = "var(--footer-color)";
+    }
 }
 
 // work with content
