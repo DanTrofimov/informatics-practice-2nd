@@ -1,4 +1,5 @@
 .panel {
+    color: black;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -14,6 +15,7 @@
 }
 
 .card {
+    color: black;
     background-color: #80bdff;
     text-align: center;
     min-width: 200px;

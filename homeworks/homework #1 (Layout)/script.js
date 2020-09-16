@@ -24,8 +24,43 @@ const htmlContent = `
                 </article>
 `;
 
-var showMenu = false;
+// default theme value
+let theme = 'light';
+document.styleSheets[3].disabled = true;
 
+// added functional to the menu button
+document.getElementById('nav-button').addEventListener( "click", changeMenuVisibility);
+// get color-buttons
+themeButtons = document.getElementById('header').children;
+themeButtons[0].addEventListener("click", changeAreaBackground);
+themeButtons[themeButtons.length - 1].addEventListener("click", changeTheme);
+
+function changeTheme() {
+    switch (theme) {
+        case "light":
+            theme = 'dark';
+            break;
+        case "dark":
+            theme = 'light';
+            break;
+    }
+    switch (theme) {
+        case "light":
+            document.styleSheets[2].disabled = false;
+            document.styleSheets[3].disabled = true;
+            break;
+        case "dark":
+            document.styleSheets[2].disabled = true;
+            document.styleSheets[3].disabled = false;
+            break;
+    }
+}
+
+function changeAreaBackground(childElement) {
+    childElement.parentNode.style.backgroundColor = 'black'
+}
+
+// work with content
 function addContent(idName) {
     let area = document.getElementById(idName);
     if (area.innerText.length > 100) {
@@ -38,8 +73,18 @@ function addHTMLContent(idName) {
     area.innerHTML = area.innerHTML + htmlContent
 }
 
-function changeElementVisibility(idName) {
-    let element = document.getElementById(idName);
+// some fixes of CSS's display styles
+function checkVisibility() {
+    let element = document.getElementById('nav-list');
+    if (document.documentElement.clientWidth > 800) {
+        element.style.display = 'block'
+    } else {
+        element.style.display = 'none'
+    }
+}
+
+function changeMenuVisibility() {
+    let element = document.getElementById('nav-list');
     switch (element.style.display) {
         case 'none':
             element.style.display = 'block';
@@ -50,9 +95,5 @@ function changeElementVisibility(idName) {
         default:
             element.style.display = 'block';
     }
-
-    // close navigation after click on nav-item
-    for (let i = 0; i < element.children.length; i++) {
-        element.children[i].setAttribute('onclick', 'changeElementVisibility(\'nav-list\')')
-    }
 }
+

@@ -5,36 +5,40 @@
     <title>layout-task</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tools.css">
+
+    <link rel="stylesheet" href="css-vars/light-theme.css">
+    <link rel="stylesheet" href="css-vars/dark-theme.css">
 </head>
-<body>
-    <header class="header" id="header">
-        header
+<body onresize="checkVisibility()" class="theme-element">
+    <header class="header theme-element" id="header">
+        <button id="first-button">change area background</button>
+        <button id="three-button">switch theme</button>
     </header>
     <main class="main-content">
-        <div class="left-side-bar" id="left-bar">
+        <div class="left-side-bar theme-element" id="left-bar">
             <div class="nav-wrapper">
-                <button id="nav-button" onclick="changeElementVisibility('nav-list')">navigation 🍔</button>
+                <button id="nav-button">navigation 🍔</button>
                 <h4 id="nav-title">navigation:</h4>
                 <ul id="nav-list">
-                    <li><a href="#header">header</a></li>
-                    <li><a href="#central-content">center</a></li>
-                    <li><a href="#footer">footer</a></li>
-                    <li><a href="#">stub link</a></li>
-                    <li><a href="#">stub link</a></li>
-                    <li><a href="#">stub link</a></li>
-                    <li><a href="#">stub link</a></li>
-                    <li><a href="#">stub link</a></li>
+                    <li><a href="#header" class="theme-element">header</a></li>
+                    <li><a href="#central-content" class="theme-element">center</a></li>
+                    <li><a href="#footer" class="theme-element">footer</a></li>
+                    <li><a href="#" class="theme-element">stub link</a></li>
+                    <li><a href="#" class="theme-element">stub link</a></li>
+                    <li><a href="#" class="theme-element">stub link</a></li>
+                    <li><a href="#" class="theme-element">stub link</a></li>
+                    <li><a href="#" class="theme-element">stub link</a></li>
                 </ul>
             </div>
         </div>
-        <div class="central-content" id="central-content">
+        <div class="central-content theme-element" id="central-content">
             central-content
         </div>
-        <div class="right-side-bar" id="right-bar">
+        <div class="right-side-bar theme-element" id="right-bar">
             right-bar
         </div>
     </main>
-    <footer class="footer" id="footer">
+    <footer class="footer theme-element" id="footer">
         footer
     </footer>
 
@@ -42,7 +46,6 @@
     <div class="panel">
         <h3>Add text content</h3>
         <div>
-            <button onclick="addContent('header')">header</button>
             <button onclick="addContent('central-content')">central</button>
             <button onclick="addContent('right-bar')">right</button>
             <button onclick="addContent('footer')">footer</button>
@@ -51,7 +54,6 @@
     <div class="panel adding-html-content">
         <h3>Add HTML content</h3>
         <div>
-            <button onclick="addHTMLContent('header')">header</button>
             <button onclick="addHTMLContent('central-content')">central</button>
             <button onclick="addHTMLContent('right-bar')">right</button>
             <button onclick="addHTMLContent('footer')">footer</button>
