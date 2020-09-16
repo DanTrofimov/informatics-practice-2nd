@@ -60,10 +60,10 @@ function changeTheme() {
 function changeAreaBackground() {
     coloredArea = !coloredArea;
     if (!coloredArea) {
-        themeButtons[0].style.backgroundColor = "var(--header-color)";
+        themeButtons[0].style.backgroundColor = "var(--footer-color)";
         themeButtons[0].parentNode.style.backgroundColor = "var(--header-color)";
     } else {
-        themeButtons[0].style.backgroundColor = "var(--footer-color)";
+        themeButtons[0].style.backgroundColor = "var(--header-color)";
         themeButtons[0].parentNode.style.backgroundColor = "var(--footer-color)";
     }
 }

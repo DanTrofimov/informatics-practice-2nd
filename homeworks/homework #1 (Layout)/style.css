@@ -33,7 +33,7 @@ header button {
 }
 
 #first-button {
-    background-color: var(--header-color);
+    background-color: var(--footer-color);
     color: var(--text-color);
 }
 
