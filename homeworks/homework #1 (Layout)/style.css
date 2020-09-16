@@ -34,7 +34,7 @@ header button {
 
 #first-button {
     background-color: var(--footer-color);
-    color: var(--text-color);
+    color: white;
 }
 
 .main-content {
