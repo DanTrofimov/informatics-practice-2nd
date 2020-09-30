@@ -15,27 +15,17 @@ public class SimpleServlet extends HttpServlet{
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     PrintWriter out = resp.getWriter();
-    out.println(getPageCode(""));
+    out.println(getPageCode());
   }
   
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String name = req.getParameter("name");
-    if(name.isEmpty()){
-      name = "Stranger";
-    }
-    String greetings = "<h1>Hello "+name+"!</h1>";
-    
     PrintWriter out = resp.getWriter();
-    out.println(getPageCode(greetings));
+    out.println(getPageCode());
   }
-  
-  /**
-   * Helper that generates page code for both GET and POST.
-   * @param content Data to output after showing form.
-   * @return HTML content for page.
-   */
-  protected String getPageCode(String content){
+
+  protected String getPageCode(){
     return "<!DOCTYPE html><html>"
             + "<head><meta charset='UTF-8'><title>Hello page</title></head>"
             + "<body style='height: 100vh; display: grid; place-items: center'>"
@@ -49,7 +39,6 @@ public class SimpleServlet extends HttpServlet{
             "<input type='checkbox' name='rules'>"+
             "<input type='submit' value='register'>"+
             "</form>"
-            + content
             + "</body></html>";
   }
 }
