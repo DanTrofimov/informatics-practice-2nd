@@ -1,0 +1,28 @@
+body, .sign-up-page {
+    height: 90vh;
+    display: grid;
+    place-items: center;
+    font-family: Consolas, sans-serif;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+}
+
+.agreement {
+    font-size: 12px;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.registration-form__title {
+    text-align: center;
+}

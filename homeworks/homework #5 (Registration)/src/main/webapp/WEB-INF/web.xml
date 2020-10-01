@@ -6,13 +6,30 @@
     <welcome-file-list>
         <welcome-file>main</welcome-file>
     </welcome-file-list>
+
     <servlet>
-        <servlet-name>hello</servlet-name>
-        <servlet-class>Registration.SimpleServlet</servlet-class>
+        <servlet-name>mainServlet</servlet-name>
+        <servlet-class>Registration.servlets.MainServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>signupServlet</servlet-name>
+        <servlet-class>Registration.servlets.SignupServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profileServlet</servlet-name>
+        <servlet-class>Registration.servlets.ProfileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>hello</servlet-name>
+        <servlet-name>mainServlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signupServlet</servlet-name>
+        <url-pattern>/sign-up-message</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profileServlet</servlet-name>
+        <url-pattern>/profile-page</url-pattern>
     </servlet-mapping>
 </web-app>
