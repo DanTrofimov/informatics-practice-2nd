@@ -20,19 +20,20 @@ public class SignupServlet extends HttpServlet {
         String userAgreement = request.getParameter("user-agreement");
 
         if (password != null && email != null && name != null && userAgreement != null
-                && password.equals(passwordRepeat)
-                && RegistrationChecker.checkField(email, RegistrationChecker.EMAIL_REGEXP)
-                && RegistrationChecker.checkField(name, RegistrationChecker.NAME_REGEXP)) {
-            request.setAttribute("name", name);
-            UsersData.writeData(name, email, password);
-            getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(request, response);
-            // if u use redirect u will lose data from request.getAttribute
-            // response.sendRedirect(getServletContext().getContextPath() + "/profile-page");
-            // here u need to save user data into csv-file
-            // OpenCSV
-            } else {
-            request.setAttribute("inputStatus", "Incorrect input");
-            getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
+            && (password.length() >= 6)
+            && password.equals(passwordRepeat)
+            && RegistrationChecker.checkField(email, RegistrationChecker.EMAIL_REGEXP)
+            && RegistrationChecker.checkField(name, RegistrationChecker.NAME_REGEXP)) {
+                // OpenCSV
+                UsersData ud = new UsersData();
+                ud.writeData(name, email, password);
+                request.getSession().setAttribute("name", name);
+                response.sendRedirect(getServletContext().getContextPath() + "/profile");
+                // request.setAttribute("name", name);
+                // getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(request, response);
+        } else {
+                request.setAttribute("inputStatus", "Incorrect input");
+                getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
         }
     }
 

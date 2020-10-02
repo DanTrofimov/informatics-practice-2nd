@@ -9,9 +9,9 @@
 <style>
     <%@include file="/WEB-INF/style/style.css" %>
 </style>
-    <div>
+    <div class="message">
         <h1>${requestScope.get('inputStatus')}</h1>
-<%--        <a href="/">Go back to registration</a>--%>
+        <a href="/">Back to registration</a>
     </div>
 </body>
 </html>
