@@ -19,11 +19,15 @@ public class SignupServlet extends HttpServlet {
         String passwordRepeat = request.getParameter("password-repeat");
         String userAgreement = request.getParameter("user-agreement");
 
-        if (password != null && email != null && name != null && userAgreement != null
-            && (password.length() >= 6)
-            && password.equals(passwordRepeat)
-            && RegistrationChecker.checkField(email, RegistrationChecker.EMAIL_REGEXP)
-            && RegistrationChecker.checkField(name, RegistrationChecker.NAME_REGEXP)) {
+        if (UsersData.isSignedUp(email)) {
+            request.setAttribute("inputStatus", "User with that e-mail is already exists");
+            getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
+        } else {
+            if (password != null && email != null && name != null && userAgreement != null
+                    && (password.length() >= 6)
+                    && password.equals(passwordRepeat)
+                    && RegistrationChecker.checkField(email, RegistrationChecker.EMAIL_REGEXP)
+                    && RegistrationChecker.checkField(name, RegistrationChecker.NAME_REGEXP)) {
                 // OpenCSV
                 UsersData ud = new UsersData();
                 ud.writeData(name, email, password);
@@ -31,9 +35,10 @@ public class SignupServlet extends HttpServlet {
                 response.sendRedirect(getServletContext().getContextPath() + "/profile");
                 // request.setAttribute("name", name);
                 // getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(request, response);
-        } else {
+            } else {
                 request.setAttribute("inputStatus", "Incorrect input");
                 getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
+            }
         }
     }
 

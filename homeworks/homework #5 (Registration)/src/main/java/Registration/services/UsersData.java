@@ -1,9 +1,13 @@
 package Registration.services;
 
+import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class UsersData {
     public static String dataFile = "D:\\GitHub\\rogue\\beginner-javascript\\snippets\\informatics-practice-2nd\\homeworks\\homework #5 (Registration)\\src\\main\\java\\Registration\\data\\users.csv";
@@ -15,4 +19,15 @@ public class UsersData {
         writer.writeNext(record);
         writer.close();
     }
+
+    // looking for user in csv-file
+    public static boolean isSignedUp(String email) throws IOException {
+        CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
+        List<String[]> allRows = reader.readAll();
+        //Read CSV line by line and use the string array as you want
+        for(String[] row : allRows) {
+            if (Arrays.asList(row).contains(email)) return true;
+        }
+        return false;
+    };
 }
