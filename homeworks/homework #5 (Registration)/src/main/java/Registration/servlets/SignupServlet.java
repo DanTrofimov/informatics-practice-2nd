@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import Registration.services.RegistrationChecker;
+import Registration.services.UsersData;
 
 @WebServlet("/sign-up")
 public class SignupServlet extends HttpServlet {
@@ -23,14 +24,16 @@ public class SignupServlet extends HttpServlet {
                 && RegistrationChecker.checkField(email, RegistrationChecker.EMAIL_REGEXP)
                 && RegistrationChecker.checkField(name, RegistrationChecker.NAME_REGEXP)) {
             request.setAttribute("name", name);
+            UsersData.writeData(name, email, password);
             getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(request, response);
             // if u use redirect u will lose data from request.getAttribute
             // response.sendRedirect(getServletContext().getContextPath() + "/profile-page");
+            // here u need to save user data into csv-file
+            // OpenCSV
             } else {
             request.setAttribute("inputStatus", "Incorrect input");
             getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
         }
-        // here u need to save user data into csv-file
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
