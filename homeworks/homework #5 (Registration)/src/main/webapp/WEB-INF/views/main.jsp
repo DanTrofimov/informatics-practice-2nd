@@ -7,6 +7,13 @@
     <link rel="stylesheet" href='<c:url value="/style/style.css"/>' type="text/css">
 </head>
 <body>
-    <%@include file="/WEB-INF/components/registration-form.jsp" %>
+    <div>
+        <%@include file="/WEB-INF/components/registration-form.jsp" %>
+        <c:if test="${not empty sessionScope.get('name')}">
+            <p class="link-container">
+                <a href="<c:url value="/profile"/>">Profile</a>
+            </p>
+        </c:if>
+    </div>
 </body>
 </html>
