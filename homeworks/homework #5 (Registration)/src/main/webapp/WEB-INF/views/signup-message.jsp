@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Message</title>
-        <link rel="stylesheet" href='<c:url value="/style/style.css"/>' type="text/css">
+    <link rel="stylesheet" href='<c:url value="/style/style.css"/>' type="text/css">
 </head>
 <body class="sign-up-page">
     <div class="message">

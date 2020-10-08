@@ -1,7 +1,8 @@
 body, .sign-up-page {
     height: 90vh;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: Consolas, sans-serif;
 }
 
