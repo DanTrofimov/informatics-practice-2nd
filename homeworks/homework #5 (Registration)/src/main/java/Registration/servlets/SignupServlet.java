@@ -32,9 +32,8 @@ public class SignupServlet extends HttpServlet {
                 UsersData ud = new UsersData();
                 ud.writeData(name, email, password);
                 request.getSession().setAttribute("name", name);
+                request.getSession().setAttribute("email", email);
                 response.sendRedirect(getServletContext().getContextPath() + "/profile");
-                // request.setAttribute("name", name);
-                // getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(request, response);
             } else {
                 request.setAttribute("inputStatus", "Incorrect input");
                 getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);

@@ -6,9 +6,10 @@
     <link rel="stylesheet" href='<c:url value="/style/style.css"/>' type="text/css">
 </head>
 <body>
-<div class="message">
-    <h1>Hello, ${sessionScope.get('name')}</h1>
-    <a href="/">Back to registration</a>
-</div>
+    <div class="message">
+        <h2>Hello, ${sessionScope.get('name')}</h2>
+        <h2>Your email: ${sessionScope.get('email')}</h2>
+        <a href='<c:url value="/"/>'>Back to registration</a>
+    </div>
 </body>
 </html>

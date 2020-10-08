@@ -8,7 +8,7 @@
 <body class="sign-up-page">
     <div class="message">
         <h1>${requestScope.get('inputStatus')}</h1>
-        <a href="/">Back to registration</a>
+        <a href='<c:url value="/"/>'>Back to registration</a>
     </div>
 </body>
 </html>
