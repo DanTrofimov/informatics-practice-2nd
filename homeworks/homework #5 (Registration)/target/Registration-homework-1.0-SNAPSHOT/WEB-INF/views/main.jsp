@@ -10,7 +10,7 @@
     <div>
         <%@include file="/WEB-INF/components/registration-form.jsp" %>
         <c:if test="${not empty sessionScope.get('name')}">
-            <p style="text-align: center">
+            <p class="link-container">
                 <a href="<c:url value="/profile"/>">Profile</a>
             </p>
         </c:if>
