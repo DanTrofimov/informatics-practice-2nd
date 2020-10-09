@@ -14,6 +14,11 @@
                 <a href="<c:url value="/profile"/>">Profile</a>
             </p>
         </c:if>
+        <c:if test="${empty sessionScope.get('email')}">
+            <p class="link-container">
+                <a href="<c:url value="/sign-in"/>">Sign In</a>
+            </p>
+        </c:if>
     </div>
 </body>
 </html>

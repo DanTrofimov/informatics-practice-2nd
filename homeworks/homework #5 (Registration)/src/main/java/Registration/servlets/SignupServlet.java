@@ -20,7 +20,7 @@ public class SignupServlet extends HttpServlet {
         String userAgreement = request.getParameter("user-agreement");
 
         if (UsersData.isRegistered(email)) {
-            request.setAttribute("inputStatus", "User wit that e-mail is already exists");
+            request.setAttribute("inputStatus", "User with that e-mail is already exists");
             getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
         } else {
             if (password != null && email != null && name != null && userAgreement != null

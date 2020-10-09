@@ -32,6 +32,31 @@ public class UsersData {
         return false;
     }
 
+    // FIXME: check
+    public static boolean checkUser(String email, String password) throws IOException {
+        CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
+        List<String[]> allRows = reader.readAll();
+        //Read CSV line by line and use the string array
+        for(String[] row : allRows) {
+            if (Arrays.asList(row[1]).contains(email)) {
+                if (Arrays.asList(row[2]).equals(password)) return true;
+            }
+        }
+        return false;
+    }
+
+    public static String getUsername(String email) throws IOException {
+        CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
+        List<String[]> allRows = reader.readAll();
+        //Read CSV line by line and use the string array
+        for(String[] row : allRows) {
+            if (Arrays.asList(row[1]).contains(email)) {
+                return Arrays.asList(row[0]).toString();
+            }
+        }
+        return null;
+    }
+
     public static boolean isSigned(HttpServletRequest request) {
         return request.getSession().getAttribute("email") != null && request.getSession().getAttribute("name") != null;
     }
