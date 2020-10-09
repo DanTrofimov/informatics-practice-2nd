@@ -10,6 +10,9 @@
         <h2>Hello, ${sessionScope.get('name')}</h2>
         <h2>Your email: ${sessionScope.get('email')}</h2>
         <a href='<c:url value="/"/>'>Back to registration</a>
+        <c:if test="${not empty sessionScope.get('email')}">
+            <a href="<c:url value="/signout"/>">Sign Out</a>
+        </c:if>
     </div>
 </body>
 </html>

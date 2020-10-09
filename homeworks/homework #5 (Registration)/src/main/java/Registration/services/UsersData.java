@@ -3,6 +3,7 @@ package Registration.services;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,13 +22,27 @@ public class UsersData {
     }
 
     // looking for user in csv-file
-    public static boolean isSignedUp(String email) throws IOException {
+    public static boolean isRegistered(String email) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
         List<String[]> allRows = reader.readAll();
-        //Read CSV line by line and use the string array as you want
+        //Read CSV line by line and use the string array
         for(String[] row : allRows) {
             if (Arrays.asList(row[1]).contains(email)) return true;
         }
         return false;
-    };
+    }
+
+    public static boolean isSigned(HttpServletRequest request) {
+        return request.getSession().getAttribute("email") != null && request.getSession().getAttribute("name") != null;
+    }
+
+    public static void addToSession(String name, String email, HttpServletRequest request) {
+        request.getSession().setAttribute("email", email);
+        request.getSession().setAttribute("name", name);
+    }
+
+    public static void signOut(HttpServletRequest request) {
+        request.getSession().removeAttribute("email");
+        request.getSession().removeAttribute("name");
+    }
 }

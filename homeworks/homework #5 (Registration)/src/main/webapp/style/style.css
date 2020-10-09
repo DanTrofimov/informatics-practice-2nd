@@ -6,11 +6,15 @@ body, .sign-up-page {
     font-family: Consolas, sans-serif;
 }
 
-.registration-form {
+.form {
     display: flex;
     flex-direction: column;
     width: 300px;
     gap: 10px;
+}
+
+.form__title {
+    text-align: center;
 }
 
 .agreement {
@@ -22,10 +26,6 @@ body, .sign-up-page {
     flex-direction: row;
     align-items: center;
     gap: 5px;
-}
-
-.registration-form__title {
-    text-align: center;
 }
 
 .message {
