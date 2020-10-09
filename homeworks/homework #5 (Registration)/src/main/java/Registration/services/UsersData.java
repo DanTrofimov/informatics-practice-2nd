@@ -32,7 +32,7 @@ public class UsersData {
         return false;
     }
 
-    // FIXME: check
+    // FIXME: check next 2 methods
     public static boolean checkUser(String email, String password) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
         List<String[]> allRows = reader.readAll();
@@ -45,20 +45,23 @@ public class UsersData {
         return false;
     }
 
+    // getting user name
     public static String getUsername(String email) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
         List<String[]> allRows = reader.readAll();
+        if (allRows.isEmpty()) return null;
         //Read CSV line by line and use the string array
         for(String[] row : allRows) {
             if (Arrays.asList(row[1]).contains(email)) {
-                return Arrays.asList(row[0]).toString();
+                return Arrays.asList(row[0]).toString().substring(1, Arrays.asList(row[0]).toString().length()-1);
             }
         }
         return null;
     }
 
     public static boolean isSigned(HttpServletRequest request) {
-        return request.getSession().getAttribute("email") != null && request.getSession().getAttribute("name") != null;
+        return request.getSession().getAttribute("email") != null
+                && request.getSession().getAttribute("name") != null;
     }
 
     public static void addToSession(String name, String email, HttpServletRequest request) {

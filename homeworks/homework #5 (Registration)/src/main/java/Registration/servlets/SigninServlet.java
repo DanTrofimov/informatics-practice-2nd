@@ -17,18 +17,16 @@ public class SigninServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String name = UsersData.getUsername(email);
 
-//        if (UsersData.checkUser(email, password)) {
+        if (UsersData.getUsername(email) != null) {
             UsersData.addToSession(name, email, request);
             response.sendRedirect(getServletContext().getContextPath() + "/profile");
-//            return;
-//        }
-//        response.sendRedirect(getServletContext().getContextPath() + "/profile");
-
+            return;
+        }
 //        request.setAttribute("email", request.getParameter("email"));
-//        getServletContext().getRequestDispatcher("/WEB-INF/views/sign-in.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/sign-in.jsp").forward(request, response);
     }
 }
