@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("/*")
 public class BrowserFilter extends HttpFilter{
+    protected final String[] browsersToFilter = {"/profile"};
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {

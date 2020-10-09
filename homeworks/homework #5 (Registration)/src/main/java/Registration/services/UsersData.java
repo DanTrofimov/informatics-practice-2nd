@@ -32,19 +32,6 @@ public class UsersData {
         return false;
     }
 
-    // FIXME: check next 2 methods
-    public static boolean checkUser(String email, String password) throws IOException {
-        CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
-        List<String[]> allRows = reader.readAll();
-        //Read CSV line by line and use the string array
-        for(String[] row : allRows) {
-            if (Arrays.asList(row[1]).contains(email)) {
-                if (Arrays.asList(row[2]).equals(password)) return true;
-            }
-        }
-        return false;
-    }
-
     // getting user name
     public static String getUsername(String email) throws IOException {
         CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
