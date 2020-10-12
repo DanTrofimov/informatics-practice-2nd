@@ -17,7 +17,11 @@
     </t:header>
     <div class="page-content">
         <div>
-            <%@include file="/WEB-INF/components/sign-up-form.jsp" %>
+            <t:form value="Sing In" method="POST">
+                <jsp:attribute name="title">
+                    <h3 class="form__title">Sign In</h3>
+                </jsp:attribute>
+            </t:form>
             <p class="link-container">
                 <a href='<c:url value="/"/>'>Back to registration</a>
             </p>
