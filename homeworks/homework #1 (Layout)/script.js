@@ -18,7 +18,7 @@ const textContent = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. '
 
 const htmlContent = `                
                 <article class="card">
-                    <h7>${value}</h7>
+                    <h7>Title</h7>
                     <p>Some text</p>
                     <div class="card-image-placeholder">image</div>
                 </article>

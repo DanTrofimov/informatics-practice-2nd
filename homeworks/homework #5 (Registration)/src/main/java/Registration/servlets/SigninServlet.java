@@ -21,7 +21,7 @@ public class SigninServlet extends HttpServlet {
         String password = request.getParameter("password");
         String name = UsersData.getUsername(email);
 
-        if (UsersData.getUsername(email) != null) {
+        if (UsersData.getUsername(email) != null && UsersData.checkPassword(password)) {
             UsersData.addToSession(name, email, request);
             response.sendRedirect(getServletContext().getContextPath() + "/profile");
             return;

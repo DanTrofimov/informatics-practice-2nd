@@ -46,6 +46,19 @@ public class UsersData {
         return null;
     }
 
+    public static boolean checkPassword(String password) throws IOException {
+        CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
+        List<String[]> allRows = reader.readAll();
+        if (allRows.isEmpty()) return false;
+        //Read CSV line by line and use the string array
+        for(String[] row : allRows) {
+            if (Arrays.asList(row[2]).contains(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isSigned(HttpServletRequest request) {
         return request.getSession().getAttribute("email") != null
                 && request.getSession().getAttribute("name") != null;
