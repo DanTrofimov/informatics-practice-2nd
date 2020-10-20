@@ -28,7 +28,7 @@ public class CaptchaServlet extends HttpServlet {
     private FontValues values = new FontValues();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String captcha = generateCaptchaString(CAPTCHA_LENGTH);
         request.getSession().setAttribute("captcha", captcha);
@@ -49,11 +49,6 @@ public class CaptchaServlet extends HttpServlet {
         OutputStream outputStream = response.getOutputStream();
         ImageIO.write(bufferedImage, FILE_TYPE, outputStream);
         outputStream.close();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
     }
 
     private String generateCaptchaString(int captchaLength) {
