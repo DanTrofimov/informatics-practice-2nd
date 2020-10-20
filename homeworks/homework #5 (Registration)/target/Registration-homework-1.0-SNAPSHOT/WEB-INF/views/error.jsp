@@ -7,11 +7,14 @@
     <link rel="stylesheet" href='<c:url value="/style/style.css"/>' type="text/css">
 </head>
 <body>
-    <div class="message">
-        <h1>
-            Your browser is Edge. <br>
-            Please try to use another one.
-        </h1>
+    <div class="page-content">
+        <div class="message">
+            <h1>
+                Your browser is Edge. <br>
+                Please try to use another one.
+            </h1>
+        </div>
     </div>
+
 </body>
 </html>

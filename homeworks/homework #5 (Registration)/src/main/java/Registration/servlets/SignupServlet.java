@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import Registration.services.RegistrationChecker;
+import Registration.services.InputValidator;
 import Registration.services.UsersData;
 
 @WebServlet("/sign-up")
@@ -19,15 +19,15 @@ public class SignupServlet extends HttpServlet {
         String passwordRepeat = request.getParameter("password-repeat");
         String userAgreement = request.getParameter("user-agreement");
 
-        if (UsersData.isSignedUp(email)) {
+        if (UsersData.isRegistered(email)) {
             request.setAttribute("inputStatus", "User with that e-mail is already exists");
             getServletContext().getRequestDispatcher("/WEB-INF/views/signup-message.jsp").forward(request, response);
         } else {
             if (password != null && email != null && name != null && userAgreement != null
                     && (password.length() >= 6)
                     && password.equals(passwordRepeat)
-                    && RegistrationChecker.checkField(email, RegistrationChecker.EMAIL_REGEXP)
-                    && RegistrationChecker.checkField(name, RegistrationChecker.NAME_REGEXP)) {
+                    && InputValidator.checkField(email, InputValidator.EMAIL_REGEXP)
+                    && InputValidator.checkField(name, InputValidator.NAME_REGEXP)) {
                 // OpenCSV
                 UsersData ud = new UsersData();
                 ud.writeData(name, email, password);

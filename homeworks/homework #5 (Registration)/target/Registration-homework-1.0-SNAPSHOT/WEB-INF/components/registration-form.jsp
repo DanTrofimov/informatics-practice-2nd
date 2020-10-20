@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<form action="sign-up" method="POST" class="registration-form">
-    <h3 class="registration-form__title">Registration</h3>
+<form action="sign-up" method="POST" class="form">
+    <h3 class="form__title">Registration</h3>
     <input name="name" placeholder="Name">
     <input name="email" placeholder="E-mail">
     <input name="password" type="password" placeholder="Password">
