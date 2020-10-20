@@ -1,0 +1,38 @@
+* {
+    font-family: Consolas, sans-serif;
+}
+
+.wrapper {
+    margin: auto;
+    text-align: center;
+    height: 90vh;
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.container img {
+    height: 300px;
+    width: 400px;
+}
+
+.container div {
+    border: dashed black 3px;
+    padding: 4px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+}
+
+form > input {
+    height: 30px;
+}
