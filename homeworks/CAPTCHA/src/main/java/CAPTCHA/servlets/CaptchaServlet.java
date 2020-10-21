@@ -11,11 +11,11 @@ import java.io.OutputStream;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import static CAPTCHA.services.FontValues.*;
 
@@ -31,7 +31,8 @@ public class CaptchaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String captcha = generateCaptchaString(CAPTCHA_LENGTH);
-        request.getSession().setAttribute("captcha", captcha);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("captcha", captcha);
 
         BufferedImage bufferedImage = new BufferedImage(CAPTCHA_WIDTH, CAPTCHA_HEIGHT, BufferedImage.OPAQUE);
         Graphics graphics = bufferedImage.createGraphics();
