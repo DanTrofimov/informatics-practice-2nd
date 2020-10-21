@@ -26,6 +26,7 @@ public class UsersData {
         CSVReader reader = new CSVReader(new FileReader(dataFile), ',');
         List<String[]> allRows = reader.readAll();
         //Read CSV line by line and use the string array
+        if (allRows.isEmpty()) return false;
         for(String[] row : allRows) {
             if (Arrays.asList(row[1]).contains(email)) return true;
         }

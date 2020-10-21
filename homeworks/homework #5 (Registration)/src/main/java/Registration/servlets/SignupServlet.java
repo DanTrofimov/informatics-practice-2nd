@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
+import Registration.repositories.DataBase;
 import Registration.services.InputValidator;
 import Registration.services.UsersData;
 
 @WebServlet("/sign-up")
 public class SignupServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -33,6 +36,14 @@ public class SignupServlet extends HttpServlet {
                 ud.writeData(name, email, password);
                 request.getSession().setAttribute("name", name);
                 request.getSession().setAttribute("email", email);
+
+                // write into the DB
+                DataBase db = new DataBase();
+                try {
+                    db.addUser(name, email, password);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
                 response.sendRedirect(getServletContext().getContextPath() + "/profile");
             } else {
                 request.setAttribute("inputStatus", "Incorrect input");

@@ -33,7 +33,7 @@
     <t:footer>
         <jsp:attribute name="content">
             <p>
-                consectetur adipisicing elit
+                consectetur adipisicing elit ${sessionScope.get('id')}
             </p>
         </jsp:attribute>
     </t:footer>
