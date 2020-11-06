@@ -5,7 +5,7 @@
 <head>
     <title>REST</title>
 </head>
-    <body>
+    <body style="height: 100vh; display: grid; place-items: center; font-family: Consolas, sans-serif">
         <h1>rest service</h1>
     </body>
 </html>
