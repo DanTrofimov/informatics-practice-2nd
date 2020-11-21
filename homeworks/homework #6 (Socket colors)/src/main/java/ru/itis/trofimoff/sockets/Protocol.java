@@ -1,5 +1,5 @@
 package ru.itis.trofimoff.sockets;
 
 public class Protocol {
-    public static short PORT = 11903;
+    public static short PORT = 80;
 }
