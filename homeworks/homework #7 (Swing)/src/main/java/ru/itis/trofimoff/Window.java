@@ -15,6 +15,7 @@ public class Window {
     private JFrame mainFrame;
     private JPanel mainContent;
     private JLabel footer;
+    private int angle;
 
     public Window() {
         mainFrame = new JFrame("Simple Application");
@@ -160,6 +161,23 @@ public class Window {
             constraints.gridy = 1;
             formPanel.add(passwordField, constraints);
 
+            JLabel passwordLabelRepeat = new JLabel("Repeat: ");
+            constraints.gridx = 0;
+            constraints.gridy = 2;
+            formPanel.add(passwordLabelRepeat, constraints);
+
+            JPasswordField passwordFieldRepeat = new JPasswordField(15);
+            constraints.gridx = 1;
+            constraints.gridy = 2;
+            formPanel.add(passwordFieldRepeat, constraints);
+
+            JButton formButton = new JButton();
+            formButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            formButton.setText("submit");
+            addHoverListener(formButton, "animating square");
+            constraints.gridx = 1;
+            constraints.gridy = 3;
+            formPanel.add(formButton, constraints);
 
             formPanel.setVisible(true);
 
@@ -216,10 +234,9 @@ public class Window {
             } catch (IOException e) {
                 System.err.println("image download problems: " + e.getMessage());
             }
-            graphics.rotate(Math.toRadians(20));
+            angle+=10;
+            graphics.rotate(Math.toRadians(angle));
             graphics.drawImage(img, 0, 0, null);
-            Timer timer = new Timer(100, new AnimateRectangle());
-            timer.start();
         }
     }
 }
