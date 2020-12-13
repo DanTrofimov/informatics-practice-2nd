@@ -204,7 +204,7 @@ public class Window {
             Graphics2D graphics = (Graphics2D) g;
             Image img = null;
             try {
-                img = ImageIO.read(new File("D:\\GitHub\\rogue\\beginner-javascript\\snippets\\servlets-examples\\informatics-practice-2nd\\homeworks\\homework #7 (Swing)\\src\\main\\resources\\images\\dog.png"));
+                img = ImageIO.read(new File("src\\main\\resources\\images\\dog.png"));
             } catch (IOException e) {
                 System.err.println("image download problems: " + e.getMessage());
             }
@@ -230,7 +230,7 @@ public class Window {
             Graphics2D graphics = (Graphics2D) g;
             Image img = null;
             try {
-                img = ImageIO.read(new File("D:\\GitHub\\rogue\\beginner-javascript\\snippets\\servlets-examples\\informatics-practice-2nd\\homeworks\\homework #7 (Swing)\\src\\main\\resources\\images\\dog.png"));
+                img = ImageIO.read(new File("src\\main\\resources\\images\\dog.png"));
             } catch (IOException e) {
                 System.err.println("image download problems: " + e.getMessage());
             }
