@@ -74,7 +74,6 @@ public class Browser extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String test = "https://itis-hub.herokuapp.com/";
         WebEngine webEngine = browser.getEngine();
 
         Worker<Void> worker = webEngine.getLoadWorker();

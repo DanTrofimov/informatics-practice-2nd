@@ -16,6 +16,9 @@ public class Window {
     private JPanel mainContent;
     private JLabel footer;
     private int angle;
+    public boolean status = false;
+    private Shape shape;
+    private Graphics2D graphics;
 
     public Window() {
         mainFrame = new JFrame("Simple Application");
@@ -68,9 +71,48 @@ public class Window {
         JButton secondButton = new JButton();
         secondButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         secondButton.setText("animate");
-        secondButton.addActionListener(new AnimateRectangle());
+//        secondButton.addActionListener(new AnimateRectangle());
         buttonsPanel.add(secondButton);
         addHoverListener(secondButton, "animating square");
+
+
+        secondButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                status = !status;
+                new Thread(() -> {
+                    while (true) {
+                        if (status) {
+
+                            break;
+                        }
+                        mainContent.repaint();
+                        mainContent.removeAll();
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                Image img = null;
+                                try {
+                                    img = ImageIO.read(new File("src\\main\\resources\\images\\dog.png"));
+                                } catch (IOException e) {
+                                    System.err.println("image download problems: " + e.getMessage());
+                                }
+
+                                graphics.rotate(Math.toRadians(15), mainContent.getSize().width / 2, mainContent.getSize().height / 2);
+                                graphics.drawImage(img, 0, 0, null);
+                            }
+                        });
+
+
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException interruptedException) {
+                            interruptedException.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+
 
         JButton thirdButton = new JButton();
         thirdButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -88,6 +130,9 @@ public class Window {
         mainFrame.getContentPane().add(footer, constraints);
 
         mainFrame.setVisible(true);
+
+        graphics = (Graphics2D) mainFrame.getGraphics();
+
     }
 
     public void addHoverListener(JButton button, String text) {
@@ -190,7 +235,7 @@ public class Window {
         @Override
         public void actionPerformed(ActionEvent e) {
             MyJPanel myJPanel = new MyJPanel();
-            myJPanel.setPreferredSize(new Dimension(500, 500));
+            myJPanel.setPreferredSize(new Dimension(mainContent.getSize().width / (int) Math.round(Math.sqrt(2)), mainContent.getSize().height / (int) Math.round(Math.sqrt(2))));
             mainContent.removeAll();
             myJPanel.setVisible(true);
             mainContent.add(myJPanel);
@@ -209,17 +254,6 @@ public class Window {
                 System.err.println("image download problems: " + e.getMessage());
             }
             graphics.drawImage(img, 0, 0, null);
-        }
-    }
-
-    private class AnimateRectangle extends AbstractAction {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            MyAnimateJPanel myAnimateJPanel = new MyAnimateJPanel();
-            myAnimateJPanel.setPreferredSize(new Dimension(500, 500));
-            mainContent.removeAll();
-            myAnimateJPanel.setVisible(true);
-            mainContent.add(myAnimateJPanel);
         }
     }
 
