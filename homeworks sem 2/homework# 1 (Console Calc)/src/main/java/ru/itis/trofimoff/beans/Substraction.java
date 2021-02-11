@@ -1,6 +1,6 @@
-package ru.itis.trofimoff.console.beans;
+package ru.itis.trofimoff.beans;
 
-public class Sub implements MathOperation {
+public class Substraction implements MathOperation {
     @Override
     public int performOperation(int a, int b) {
         return a - b;

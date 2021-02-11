@@ -1,8 +1,8 @@
-package ru.itis.trofimoff.console;
+package ru.itis.trofimoff;
 
 import org.springframework.context.ApplicationContext;
-import ru.itis.trofimoff.console.beans.*;
-import ru.itis.trofimoff.console.exceptions.UnknownOperationException;
+import ru.itis.trofimoff.beans.*;
+import ru.itis.trofimoff.exseptions.UnknownOperationException;
 
 import java.util.Arrays;
 

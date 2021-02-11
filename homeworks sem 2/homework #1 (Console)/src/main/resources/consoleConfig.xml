@@ -9,7 +9,7 @@
 >
     <bean id="division" class="ru.itis.trofimoff.console.beans.Division" />
     <bean id="addition" class="ru.itis.trofimoff.console.beans.Addition" />
-    <bean id="subtraction" class="ru.itis.trofimoff.console.beans.Sub" />
-    <bean id="multiplication" class="ru.itis.trofimoff.console.beans.Mult" />
+    <bean id="subtraction" class="ru.itis.trofimoff.console.beans.Substraction" />
+    <bean id="multiplication" class="ru.itis.trofimoff.console.beans.Multiplication" />
 
 </beans>
