@@ -1,10 +1,8 @@
 package ru.itis.trofimoff.console;
 
 import org.springframework.context.ApplicationContext;
-import ru.itis.trofimoff.console.beans.Addition;
-import ru.itis.trofimoff.console.beans.Division;
-import ru.itis.trofimoff.console.beans.Mult;
-import ru.itis.trofimoff.console.beans.Sub;
+import ru.itis.trofimoff.console.beans.*;
+import ru.itis.trofimoff.console.exceptions.UnknownOperationException;
 
 import java.util.Arrays;
 
@@ -16,9 +14,9 @@ public class BeanDispatcher {
         this.context = context;
     }
 
-    public Object getBean(String operation) {
+    public MathOperation getBean(String operation) throws UnknownOperationException {
         if (!Arrays.asList(OPERATIONS_LIST).contains(operation)) {
-            return null;
+            throw new UnknownOperationException("Unknown operation. Exiting...");
         };
         switch (operation) {
             case "+": {
@@ -34,7 +32,7 @@ public class BeanDispatcher {
                 return (Division) context.getBean("division");
             }
             default: {
-                return null;
+                throw new UnknownOperationException("Unknown operation. Exiting...");
             }
         }
     }
