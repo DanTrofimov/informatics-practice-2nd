@@ -7,9 +7,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd"
 >
-    <bean id="division" class="ru.itis.trofimoff.console.beans.Division" />
-    <bean id="addition" class="ru.itis.trofimoff.console.beans.Addition" />
-    <bean id="subtraction" class="ru.itis.trofimoff.console.beans.Substraction" />
-    <bean id="multiplication" class="ru.itis.trofimoff.console.beans.Multiplication" />
+    <bean id="division" class="ru.itis.trofimoff.beans.Division" />
+    <bean id="addition" class="ru.itis.trofimoff.beans.Addition" />
+    <bean id="subtraction" class="ru.itis.trofimoff.beans.Substraction" />
+    <bean id="multiplication" class="ru.itis.trofimoff.beans.Multiplication" />
 
 </beans>

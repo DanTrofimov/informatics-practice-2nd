@@ -25,16 +25,6 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-    beans
-    Addition
-    Division
-    MathOperation
-    Multiplication
-    Substraction
-    exceptions
-    UnknownOperationException
-    BeanDispatcher
-    ConsoleApplication
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
