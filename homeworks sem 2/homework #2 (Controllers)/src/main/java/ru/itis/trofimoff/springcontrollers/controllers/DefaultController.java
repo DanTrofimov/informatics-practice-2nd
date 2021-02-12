@@ -104,6 +104,8 @@ public class DefaultController {
     map.put("viewVariable", "Path variable:<br>" + param );
     return "tests";
   }
+
+  // fixme: hw
   
   @RequestMapping("/rh")
   public String requestHeader(@RequestHeader() Map<String, String> headers, ModelMap map) {
@@ -119,10 +121,21 @@ public class DefaultController {
     return "tests";
   }
 
-  //
+  @RequestMapping(
+          value = "/request-param",
+          method = RequestMethod.GET,
+          headers = "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36"
+  )
+  public String requestMappingBunchWithParam(@RequestParam(
+          value        = "special_param",
+          required     = true
+  ) String param, ModelMap map) {
+    map.put("viewVariable", "Page with secret_param for Chrome 88 on Windows, special param: " + param);
+    return "tests";
+  }
 }
 
 /*
-  TODO: 1) Request param для определенного браузера
+  TODO: 1) RequestParam для определенного браузера
         2) Вывести все заголовки используя request header
  */
