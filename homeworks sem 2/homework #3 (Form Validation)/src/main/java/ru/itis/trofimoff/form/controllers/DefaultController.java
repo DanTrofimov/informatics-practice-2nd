@@ -1,15 +1,12 @@
-package ru.itis.trofimoff.springcontrollers.controllers;
+package ru.itis.trofimoff.form.controllers;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Map;
 
 @Controller
@@ -138,12 +135,4 @@ public class DefaultController {
 /*
   TODO: 1) RequestParam для определенного браузера
         2) Вывести все заголовки используя request header
- */
-
-/*
-  TODO:
-    1) статическая форма
-    2) валидация в котроллере, берет из запроса параметры
-    3) запись в БД или куда-то еще
-    -- 3 бина, validator, dao, repo --
  */
