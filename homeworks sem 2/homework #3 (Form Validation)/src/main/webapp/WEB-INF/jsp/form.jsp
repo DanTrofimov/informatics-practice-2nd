@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <form action="${s:mvcUrl('UC#formPostRequest').build()}" method="post" style="display: flex; flex-direction: column; gap: 10px; width: 200px">
+    <form action="${s:mvcUrl('FC#formPostRequest').build()}" method="post" style="display: flex; flex-direction: column; gap: 10px; width: 200px">
         <input type="text" placeholder="name" name="name">
         <input type="number" placeholder="age" name="age">
         <input type="submit" value="Submit">
