@@ -1,9 +1,12 @@
-package ru.itis.trofimoff.form;
+package ru.itis.trofimoff.form.repository.utils;
+
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Component
 public class DataBaseConnector {
 
     private static final String DBname = "manager"; // put here name of your DB
@@ -24,3 +27,4 @@ public class DataBaseConnector {
         return conn;
     }
 }
+

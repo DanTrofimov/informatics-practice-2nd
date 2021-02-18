@@ -1,4 +1,4 @@
-package ru.itis.trofimoff.form.cofig;
+package ru.itis.trofimoff.form.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,11 +9,14 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import ru.itis.trofimoff.form.components.UserRegistration;
-import ru.itis.trofimoff.form.components.UserValidator;
+import ru.itis.trofimoff.form.repository.user.UserRepositoryImpl;
+import ru.itis.trofimoff.form.repository.utils.DataBaseConnector;
+import ru.itis.trofimoff.form.services.user.UserServiceImpl;
+import ru.itis.trofimoff.form.services.user.UserValidator;
 
 @Configuration
 @ComponentScan("ru.itis.trofimoff.form.controllers")
+@ComponentScan("ru.itis.trofimoff.form.repository.utils")
 @EnableWebMvc
 public class Config implements WebMvcConfigurer {
 
@@ -33,13 +36,23 @@ public class Config implements WebMvcConfigurer {
   }
 
   @Bean
-  public UserRegistration registrator() {
-    return new UserRegistration();
+  public UserServiceImpl userService() {
+    return new UserServiceImpl(userRepository());
+  }
+
+  @Bean
+  public UserRepositoryImpl userRepository() {
+    return new UserRepositoryImpl(dataBaseConnector());
+  }
+
+  @Bean
+  public DataBaseConnector dataBaseConnector() {
+    return new DataBaseConnector();
   }
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addViewController("/").setViewName("tests");
     registry.addViewController("/").setViewName("form");
+    registry.addViewController("/").setViewName("profile");
   }
 }
