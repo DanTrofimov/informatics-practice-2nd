@@ -8,6 +8,8 @@ import ru.itis.trofimoff.form.components.UserRegistration;
 import ru.itis.trofimoff.form.components.UserValidator;
 import ru.itis.trofimoff.form.dto.UserForm;
 
+import javax.validation.Valid;
+
 @Controller
 public class FormController {
 
@@ -40,8 +42,6 @@ public class FormController {
             map.put("error", "invalid input");
         }
         map.put("user", userForm);
-        System.out.println(name);
-        System.out.println(age);
         return "form";
     }
 }
@@ -52,4 +52,12 @@ public class FormController {
     2) валидация в котроллере, берет из запроса параметры
     3) запись в БД или куда-то еще
     -- 3 бина, validator, dao, repo --
+ */
+
+
+/*
+    TODO:
+        1) разобраться с примером с формами
+        2) NPE где-то
+        3) пример с формой для автора, не всегда выдает ошибку, при частичной верности данных, с именен дропается исключение, с аватаркой - ничего
  */

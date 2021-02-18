@@ -15,7 +15,7 @@ public class UserRegistration {
     private ResultSet result;
     private PreparedStatement preparedStatement;
     //language=SQL
-    private String sqlInsertFormat = "INSERT INTO users(name, email) VALUES(?, ?)";
+    private String sqlInsertFormat = "INSERT INTO users_test(name, age) VALUES(?, ?)";
 
     public void saveUser(UserForm userForm) {
         String name = userForm.getName();
@@ -24,8 +24,9 @@ public class UserRegistration {
             DataBaseConnector connector = new DataBaseConnector();
             conn = connector.getConnection();
             preparedStatement = conn.prepareStatement(sqlInsertFormat);
+            System.out.println(conn);
             preparedStatement.setString(1, name);
-            preparedStatement.setString(2, Integer.toString(age));
+            preparedStatement.setInt(2, age);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             conn.close();
