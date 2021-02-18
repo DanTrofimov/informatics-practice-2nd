@@ -29,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void save(User entity) {
-        simpleJDBSTemplate.query(SQL_INSERT_USER, userRowMapper, entity.getName(), entity.getAge());
+        simpleJDBSTemplate.execute(SQL_INSERT_USER, entity.getName(), entity.getAge());
     }
 
     @Override

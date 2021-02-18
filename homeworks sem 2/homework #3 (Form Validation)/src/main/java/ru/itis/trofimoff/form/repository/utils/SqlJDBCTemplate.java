@@ -8,60 +8,78 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SqlJDBCTemplate {
+    private DataBaseConnector dataSource;
 
-    protected DataBaseConnector dataSource;
-
-    public SqlJDBCTemplate(DataBaseConnector dataSource){
+    public SqlJDBCTemplate(DataBaseConnector dataSource) {
         this.dataSource = dataSource;
     }
 
-    public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object ... args){
+    // на update, insert и пр
+    public <T> int execute(String sql, Object ... args) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        List<T> result = null;
-        try{
-            connection = this.dataSource.getConnection();
+        try {
+            connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            int position = 1;
-            for (Object arg : args) {
-                preparedStatement.setObject(position, arg);
-                position++;
+            for (int i = 0; i < args.length; i++) {
+                preparedStatement.setObject(i + 1, args[i]);
             }
-            if (sql.contains("UPDATE") || sql.contains("update") ||sql.toLowerCase().contains("delete")||sql.toLowerCase().contains("insert")) {
-                preparedStatement.executeUpdate();
-            } else{
-                resultSet = preparedStatement.executeQuery();
-                if (resultSet != null) {
-                    result = new ArrayList<>();
-                    while (resultSet.next()) {
-                        result.add(rowMapper.mapRow(resultSet));
-                    }
-                }
-            }
-            return result;
-        } catch (SQLException ex){
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
             throw new IllegalStateException(ex);
         } finally {
-            if (resultSet!=null){
-                try{
-                    resultSet.close();
-                } catch (SQLException ex){
-                    //ignore
-                }
-            }
-            if (preparedStatement!=null){
-                try{
+            if (preparedStatement != null) {
+                try {
                     preparedStatement.close();
-                } catch (SQLException ex){
-                    //ignore
+                } catch (SQLException ex) {
                 }
             }
-            if (connection!=null){
-                try{
+            if (connection != null) {
+                try {
                     connection.close();
-                } catch (SQLException ex){
-                    //ignore
+                } catch (SQLException ex) {
+                }
+            }
+        }
+    }
+
+    // на select и пр.
+    public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object ... args) {
+        ResultSet resultSet = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        List<T> resultEntities = new ArrayList<>();
+
+        try {
+            connection = dataSource.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                preparedStatement.setObject(i + 1, args[i]);
+            }
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                resultEntities.add(rowMapper.mapRow(resultSet));
+            }
+            return resultEntities;
+        } catch (SQLException ex) {
+            throw new IllegalStateException(ex);
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
                 }
             }
         }
