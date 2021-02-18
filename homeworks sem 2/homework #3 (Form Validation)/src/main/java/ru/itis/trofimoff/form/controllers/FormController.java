@@ -1,11 +1,21 @@
 package ru.itis.trofimoff.form.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.itis.trofimoff.form.components.UserRegistration;
+import ru.itis.trofimoff.form.components.UserValidator;
+import ru.itis.trofimoff.form.dto.UserForm;
 
 @Controller
 public class FormController {
+
+    @Autowired
+    public UserValidator validator;
+
+    @Autowired
+    public UserRegistration registrator;
 
     @RequestMapping(
             value = "/form",
@@ -22,9 +32,14 @@ public class FormController {
     public String formPostRequest(@RequestParam("name") String name,
                                   @RequestParam("age") String age,
                                   ModelMap map){
-
-        map.put("userName", name );
-        map.put("userAge", age);
+        UserForm userForm = new UserForm(name.substring(1), Integer.parseInt(age.substring(1)));
+        if (validator.isValid(userForm)) {
+            map.put("success", "logged");
+            registrator.saveUser(userForm);
+        } else {
+            map.put("error", "invalid input");
+        }
+        map.put("user", userForm);
         System.out.println(name);
         System.out.println(age);
         return "form";

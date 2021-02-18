@@ -14,10 +14,11 @@
         <input type="submit" value="Submit">
     </form>
     <div>
-        ${userName}
-        ${userAge}
+        ${user.name}
+        ${user.age}
     </div>
     <div>
+        ${success}
         ${error}
     </div>
 </body>

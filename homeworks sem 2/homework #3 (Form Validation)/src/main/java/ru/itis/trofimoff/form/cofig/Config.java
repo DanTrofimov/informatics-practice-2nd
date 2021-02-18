@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import ru.itis.trofimoff.form.components.UserRegistration;
+import ru.itis.trofimoff.form.components.UserValidator;
 
 @Configuration
 @ComponentScan("ru.itis.trofimoff.form.controllers")
@@ -23,6 +25,16 @@ public class Config implements WebMvcConfigurer {
     resolver.setViewClass(JstlView.class);
     resolver.setRedirectContextRelative(false);
     return resolver;
+  }
+
+  @Bean
+  public UserValidator validator(){
+    return new UserValidator();
+  }
+
+  @Bean
+  public UserRegistration registrator() {
+    return new UserRegistration();
   }
 
   @Override
