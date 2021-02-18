@@ -4,19 +4,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @Controller
-@RequestMapping("/form")
 public class FormController {
-    @GetMapping
+
+    @RequestMapping(
+            value = "/form",
+            method = RequestMethod.GET
+    )
     public String formGetRequest(ModelMap map){
         return "form";
     }
 
-    @PostMapping
-    public String formPostRequest(@PathVariable Map params, ModelMap map){
-        map.put("formData", params );
+    @RequestMapping(
+            value = "/form",
+            method = RequestMethod.POST
+    )
+    public String formPostRequest(@RequestParam("name") String name,
+                                  @RequestParam("age") String age,
+                                  ModelMap map){
+
+        map.put("userName", name );
+        map.put("userAge", age);
+        System.out.println(name);
+        System.out.println(age);
         return "form";
     }
 }
