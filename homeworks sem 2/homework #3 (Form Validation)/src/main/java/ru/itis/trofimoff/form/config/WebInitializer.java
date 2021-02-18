@@ -1,4 +1,4 @@
-package ru.itis.trofimoff.form.cofig;
+package ru.itis.trofimoff.form.config;
    
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
