@@ -1,5 +1,6 @@
 package ru.itis.trofimoff.form.services.user;
 
+import ru.itis.trofimoff.form.dto.UserDto;
 import ru.itis.trofimoff.form.models.User;
 import ru.itis.trofimoff.form.repository.user.UserRepository;
 
@@ -15,8 +16,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
-        this.usersRepository.save(user);
+    public void saveUser(UserDto userDto) {
+        this.usersRepository.save(new User(userDto.getName(), userDto.getAge()));
     }
 
     @Override

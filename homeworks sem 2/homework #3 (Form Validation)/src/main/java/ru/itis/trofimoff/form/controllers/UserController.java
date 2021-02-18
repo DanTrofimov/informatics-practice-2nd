@@ -37,7 +37,7 @@ public class UserController {
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String formPostRequest(HttpServletRequest request, UserDto userDto){
         if (validator.isValid(userDto)) {
-            registrator.saveUser(new User(userDto.getName(), userDto.getAge()));
+            registrator.saveUser(userDto);
             request.getSession().setAttribute("error", null);
             request.getSession().setAttribute("success", "logged");
             request.getSession().setAttribute("user", userDto);
