@@ -2,7 +2,6 @@ package ru.itis.trofimoff.form.repository.user;
 
 
 import ru.itis.trofimoff.form.models.User;
-import ru.itis.trofimoff.form.repository.utils.DataBaseConnector;
 import ru.itis.trofimoff.form.repository.utils.RowMapper;
 import ru.itis.trofimoff.form.repository.utils.SqlJDBCTemplate;
 
@@ -20,9 +19,9 @@ public class UserRepositoryImpl implements UserRepository {
             .build();
 
     private SqlJDBCTemplate simpleJDBSTemplate;
-    private DataBaseConnector dataSource;
+    private DataSource dataSource;
 
-    public UserRepositoryImpl(DataBaseConnector dataSource) {
+    public UserRepositoryImpl(DataSource dataSource) {
         this.dataSource = dataSource;
         this.simpleJDBSTemplate = new SqlJDBCTemplate(dataSource);
     }

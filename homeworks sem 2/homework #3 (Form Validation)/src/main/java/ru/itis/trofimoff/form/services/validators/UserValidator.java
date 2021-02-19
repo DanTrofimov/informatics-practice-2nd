@@ -1,4 +1,4 @@
-package ru.itis.trofimoff.form.services.user;
+package ru.itis.trofimoff.form.services.validators;
 
 import org.springframework.stereotype.Component;
 import ru.itis.trofimoff.form.dto.UserDto;

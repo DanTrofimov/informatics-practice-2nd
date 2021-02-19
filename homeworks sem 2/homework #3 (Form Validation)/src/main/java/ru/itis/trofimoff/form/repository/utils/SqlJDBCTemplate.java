@@ -1,5 +1,6 @@
 package ru.itis.trofimoff.form.repository.utils;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SqlJDBCTemplate {
-    private DataBaseConnector dataSource;
+    private DataSource dataSource;
 
-    public SqlJDBCTemplate(DataBaseConnector dataSource) {
+    public SqlJDBCTemplate(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

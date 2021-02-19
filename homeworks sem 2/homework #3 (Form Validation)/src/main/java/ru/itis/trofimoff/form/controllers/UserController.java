@@ -3,9 +3,8 @@ package ru.itis.trofimoff.form.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.itis.trofimoff.form.models.User;
-import ru.itis.trofimoff.form.services.user.UserService;
-import ru.itis.trofimoff.form.services.user.UserValidator;
+import ru.itis.trofimoff.form.services.user.UserServiceImpl;
+import ru.itis.trofimoff.form.services.validators.UserValidator;
 import ru.itis.trofimoff.form.dto.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ public class UserController {
     public UserValidator validator;
 
     @Autowired
-    public UserService registrator;
+    public UserServiceImpl registrator;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String redirectToForm(){
