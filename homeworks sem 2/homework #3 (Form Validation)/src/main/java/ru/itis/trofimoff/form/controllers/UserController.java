@@ -1,8 +1,10 @@
 package ru.itis.trofimoff.form.controllers;
 
+import org.postgresql.jdbc.PreferQueryMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.itis.trofimoff.form.services.user.UserServiceImpl;
 import ru.itis.trofimoff.form.services.validators.UserValidator;
 import ru.itis.trofimoff.form.dto.UserDto;
@@ -47,6 +49,26 @@ public class UserController {
             return "redirect:/form";
         }
     }
+
+//    @RequestMapping(value = "/form", method = RequestMethod.POST)
+//    public ModelAndView formPostRequest(HttpServletRequest request, UserDto userDto){
+//        ModelAndView modelAndView = new ModelAndView();
+//        if (validator.isValid(userDto)) {
+//            registrator.saveUser(userDto);
+//            request.getSession().setAttribute("error", null);
+//            request.getSession().setAttribute("success", "logged");
+//            request.getSession().setAttribute("user", userDto);
+//            // будет доступна только для отображения profile
+//            modelAndView.addObject("example", "some data for user's profile");
+//            modelAndView.setViewName("profile");
+//            return modelAndView;
+//        } else {
+//            request.getSession().setAttribute("success", null);
+//            request.getSession().setAttribute("error", "invalid input");
+//            modelAndView.setViewName("redirect:/form");
+//            return modelAndView;
+//        }
+//    }
 }
 
 /*

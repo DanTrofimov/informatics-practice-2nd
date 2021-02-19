@@ -10,6 +10,7 @@
     <div>
         ${user.name}
         ${user.age}
+        ${example}
     </div>
 </body>
 </html>
