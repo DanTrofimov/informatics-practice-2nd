@@ -28,7 +28,7 @@ public class AuthorValidator implements Validator {
 
   @Override
   public void validate(Object obj, Errors e) {
-    // как вариант, до этого просто не передалвали какие-либо сообщения в принципе
+    // как вариант, до этого просто не передавали какие-либо сообщения в принципе
 //    ValidationUtils.rejectIfEmpty(e, "name", "name.empty");
     ValidationUtils.rejectIfEmpty(e, "name", "name.empty", "This name is empty");
     ValidationUtils.rejectIfEmpty(e, "avatarUrl", "avatarUrl.empty", "This URL is empty");
