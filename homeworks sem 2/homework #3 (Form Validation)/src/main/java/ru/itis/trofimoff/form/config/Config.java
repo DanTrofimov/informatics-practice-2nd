@@ -5,12 +5,11 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import ru.itis.trofimoff.form.repository.user.UserRepositoryImpl;
 import ru.itis.trofimoff.form.services.user.UserServiceImpl;
 import ru.itis.trofimoff.form.services.validators.UserValidator;
@@ -29,13 +28,17 @@ public class Config implements WebMvcConfigurer {
   private Environment environment;
 
   @Bean
-  public ViewResolver viewResolver() {
-    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    resolver.setPrefix("/WEB-INF/jsp/");
-    resolver.setSuffix(".jsp");
-    resolver.setViewClass(JstlView.class);
-    resolver.setRedirectContextRelative(false);
+  public FreeMarkerViewResolver freeMarkerViewResolver(){
+    FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+    resolver.setSuffix(".ftl");
     return resolver;
+  }
+
+  @Bean
+  public FreeMarkerConfigurer freeMarkerConfig(){
+    FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
+    configurer.setTemplateLoaderPath("/WEB-INF/fremarker/");
+    return configurer;
   }
 
   @Bean

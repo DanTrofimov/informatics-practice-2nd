@@ -3,6 +3,8 @@ package ru.itis.trofimoff.form.controllers;
 import org.postgresql.jdbc.PreferQueryMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.itis.trofimoff.form.services.user.UserServiceImpl;
@@ -10,6 +12,8 @@ import ru.itis.trofimoff.form.services.validators.UserValidator;
 import ru.itis.trofimoff.form.dto.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -36,17 +40,30 @@ public class UserController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String formPostRequest(HttpServletRequest request, UserDto userDto){
-        if (validator.isValid(userDto)) {
-            registrator.saveUser(userDto);
-            request.getSession().setAttribute("error", null);
-            request.getSession().setAttribute("success", "logged");
-            request.getSession().setAttribute("user", userDto);
+    public String formPostRequest(HttpServletRequest request, UserDto userDto, Model model, BindingResult bindingResult){
+//        if (validator.isValid(userDto)) {
+//            registrator.saveUser(userDto);
+//            request.getSession().setAttribute("error", null);
+//            request.getSession().setAttribute("success", "logged");
+//            request.getSession().setAttribute("user", userDto);
+//
+//            List exampleList = new ArrayList<>();
+//            exampleList.add(1);
+//            exampleList.add(2);
+//            exampleList.add(3);
+//            request.getSession().setAttribute("exampleList", exampleList);
+//
+//            return "redirect:/profile";
+//        } else {
+//            request.getSession().setAttribute("success", null);
+//            request.getSession().setAttribute("error", "invalid input");
+//            return "redirect:/form";
+//        }
+        if (!bindingResult.hasErrors()) {
             return "profile";
-        } else {
-            request.getSession().setAttribute("success", null);
-            request.getSession().setAttribute("error", "invalid input");
-            return "redirect:/form";
+        } else  {
+            model.addAttribute("formExample", userDto);
+            return "form";
         }
     }
 
