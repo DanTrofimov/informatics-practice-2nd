@@ -3,6 +3,7 @@ package ru.itis.trofimoff.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.trofimoff.dto.ContentDto;
@@ -22,9 +23,8 @@ public class UserController {
         return "user";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String postUserPage(ContentDto contentDto){
-        System.out.println(contentDto);
-        return "user";
+    @RequestMapping("/generated/{pageName}")
+    public String getCustomPage(@PathVariable String pageName) {
+        return pageName;
     }
 }

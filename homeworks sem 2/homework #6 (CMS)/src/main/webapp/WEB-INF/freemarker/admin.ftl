@@ -13,11 +13,18 @@
 </head>
 <body>
     <h2 class="title">here is an editing page:</h2>
-    <form method="post" action="user">
+    <form method="post" action="admin">
+        <div class="nameInput">
+            <label for="name">Enter name of your template:</label>
+            <input type="text" placeholder="Name of template" name="name" id="name">
+        </div>
         <textarea name="content">
             Start to create your page here...
         </textarea>
-        <input type="submit" value="save">
+        <div class="navigation">
+            <input type="submit" value="save">
+            <a href="user">cancel</a>
+        </div>
     </form>
     <script src="<@spring.url '/scripts/init.js' />"></script>
 </body>

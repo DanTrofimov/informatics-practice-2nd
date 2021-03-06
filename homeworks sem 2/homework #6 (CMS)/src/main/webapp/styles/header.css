@@ -1,0 +1,20 @@
+header {
+    background-color: #3d4c8b;
+    width: 300px;
+    height: 100vh;
+    color: white;
+    display: grid;
+    place-items: center;
+}
+
+.edit-link {
+    position: absolute;
+    bottom: 40px;
+    left: 120px;
+    color: white;
+    font-size: 18px;
+}
+
+.edit-link:visited {
+    color: white;
+}

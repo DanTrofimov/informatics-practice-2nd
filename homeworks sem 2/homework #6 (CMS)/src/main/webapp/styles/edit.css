@@ -12,3 +12,29 @@ body {
 .title {
     margin: 20px 0 20px 0;
 }
+
+.nameInput {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.nameInput input {
+    width: 120px;
+    padding: 0 5px 0 5px;
+}
+
+.navigation {
+    display: flex;
+    width: 200px;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.navigation input {
+    padding: 2px 5px 2px 5px;
+}
+
+

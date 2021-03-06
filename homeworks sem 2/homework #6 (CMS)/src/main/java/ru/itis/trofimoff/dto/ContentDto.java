@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ContentDto {
     private String content;
+    private String name;
 }
