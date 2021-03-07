@@ -18,17 +18,13 @@ public class UserController {
     private PageService pageService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getUserPageRoot(HttpServletRequest request) {
-        request.getSession().setAttribute("pages", pageService.getAllPages());
-        System.out.println(pageService.getAllPages());
-        request.getSession().setAttribute("currentPageContent", null);
-        return "user";
+    public String getUserPageRoot() {
+        return "redirect:/user";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String getUserPage(HttpServletRequest request){
         request.getSession().setAttribute("pages", pageService.getAllPages());
-        System.out.println(pageService.getAllPages());
         request.getSession().setAttribute("currentPageContent", null);
         return "user";
     }

@@ -13,7 +13,6 @@ public class FreemarkerCreator implements FileCreator {
     private final String currentExtension = "ftl";
     private String freemarkerHeaderContent = "" +
             "<#import \"spring.ftl\" as spring/>\n" +
-            "<#import \"../header.ftl\" as header/>\n" +
             "\n" +
             "<!doctype html>\n" +
             "<html lang=\"en\">\n" +
@@ -23,7 +22,6 @@ public class FreemarkerCreator implements FileCreator {
             "          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\n" +
             "    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n" +
             "    <title>Document</title>\n" +
-            "    <link rel=\"stylesheet\" href=\"<@spring.url '/styles/header.css' />\" type=\"text/css\">\n" +
             "    <link rel=\"stylesheet\" href=\"<@spring.url '/styles/pages.css' />\" type=\"text/css\">\n" +
             "</head>";
 
@@ -45,7 +43,6 @@ public class FreemarkerCreator implements FileCreator {
         {
             printStream.println(this.freemarkerHeaderContent);
             printStream.println("<body>");
-            printStream.println("<@header.header />");
             printStream.println("<div class=\"page-content\">");
             printStream.println(fileText);
             printStream.println("</div>");

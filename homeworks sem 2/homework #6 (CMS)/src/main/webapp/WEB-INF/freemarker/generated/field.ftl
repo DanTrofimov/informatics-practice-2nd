@@ -1,5 +1,4 @@
 <#import "spring.ftl" as spring/>
-<#import "../header.ftl" as header/>
 
 <!doctype html>
 <html lang="en">
@@ -9,13 +8,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="<@spring.url '/styles/header.css' />" type="text/css">
     <link rel="stylesheet" href="<@spring.url '/styles/pages.css' />" type="text/css">
 </head>
 <body>
-<@header.header />
 <div class="page-content">
 <p>Start to create your page here...</p>
+<p>&nbsp;</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/2/27/Bliss_%28Windows_XP%29.png" alt="Bliss (image) - Wikipedia" /></p>
 </div>
 </body>
 </html>
