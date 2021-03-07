@@ -1,10 +1,12 @@
 package ru.itis.trofimoff.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +23,9 @@ public class Page {
     String route;
     @Length(max = 1000000)
     String content;
+    Long parent_id;
 
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @ManyToOne
 //    @JoinColumn(name = "parent_id")
 //    Page parent;
 }

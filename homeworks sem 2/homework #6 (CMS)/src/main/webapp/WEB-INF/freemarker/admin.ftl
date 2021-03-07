@@ -18,6 +18,10 @@
             <label for="name">Enter name of your template:</label>
             <input type="text" placeholder="Name of template" name="name" id="name">
         </div>
+        <div class="nameInput">
+            <label for="parent">Enter name of template's parent:</label>
+            <input type="text" placeholder="Name of parent" name="parent" id="parent">
+        </div>
         <textarea name="content">
             Start to create your page here...
         </textarea>

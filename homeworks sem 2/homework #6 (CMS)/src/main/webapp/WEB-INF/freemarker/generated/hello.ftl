@@ -12,8 +12,7 @@
 </head>
 <body>
 <div class="page-content">
-<p>Start to create your page here...</p>
-<p>&nbsp;</p>
+<p>Start to create your page here..</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/en/2/27/Bliss_%28Windows_XP%29.png" alt="Bliss (image) - Wikipedia" /></p>
 </div>
 </body>

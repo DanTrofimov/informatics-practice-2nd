@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class ContentDto {
     private String content;
     private String name;
+    private String parent;
 }

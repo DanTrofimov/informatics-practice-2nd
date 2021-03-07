@@ -24,9 +24,9 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
-    public void saveFile(String fileName, String text) {
+    public void saveFile(String fileName, String text, Long parentId) {
         String route = "/" + fileName;
-        this.pageRepository.savePage(route, text);
+        this.pageRepository.savePage(route, text, parentId);
     }
 
     @Override
