@@ -1,5 +1,5 @@
 <#import "spring.ftl" as spring/>
-<#import "header.ftl" as header/>
+<#import "../header.ftl" as header/>
 
 <!doctype html>
 <html lang="en">
@@ -12,18 +12,12 @@
     <link rel="stylesheet" href="<@spring.url '/styles/header.css' />" type="text/css">
     <link rel="stylesheet" href="<@spring.url '/styles/pages.css' />" type="text/css">
 </head>
-<body style="font-family: Consolas, sans-serif">
-    <#if pages??>
-        <@header.header pages/>
-    </#if>
-    <div class="page-content">
-        <#if currentPageContent??>
-            ${currentPageContent}
-            <#else>
-            <div class="placeholder">
-                here will be page content
-            </div>
-        </#if>
-    </div>
+<body>
+<@header.header />
+<div class="page-content">
+<p>Start to create your page here...</p>
+<p>&nbsp;</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/2/27/Bliss_%28Windows_XP%29.png" alt="Bliss (image) - Wikipedia" /></p>
+</div>
 </body>
 </html>

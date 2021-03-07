@@ -22,6 +22,7 @@ public class AdminController {
     public String postUserPage(ContentDto contentDto){
         System.out.println(contentDto);
         this.pageService.createFile(contentDto.getName(), contentDto.getContent());
+        this.pageService.saveFile(contentDto.getName(), contentDto.getContent());
         return "redirect:/admin";
     }
 }

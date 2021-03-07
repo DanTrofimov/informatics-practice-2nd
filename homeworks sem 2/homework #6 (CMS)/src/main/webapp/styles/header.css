@@ -18,3 +18,13 @@ header {
 .edit-link:visited {
     color: white;
 }
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info a, .info a:visited {
+    color: white;
+}
