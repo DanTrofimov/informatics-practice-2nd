@@ -15,7 +15,7 @@ public class AdminController {
     private PageService pageService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String getUserPage(){
+    public String getUserPage() {
         return "admin";
     }
 

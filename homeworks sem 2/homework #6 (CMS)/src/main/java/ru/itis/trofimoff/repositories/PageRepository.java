@@ -12,7 +12,7 @@ import java.util.Optional;
 @Transactional
 public interface PageRepository extends JpaRepository<Page, Long>{
     @Modifying
-    @Query(value = "INSERT INTO pages(route, content, parent_id) VALUES (?1, ?2, ?3)",nativeQuery = true)
+    @Query(value = "INSERT INTO pages(route, content, parent_id) VALUES (?1, ?2, ?3)", nativeQuery = true)
     void savePage(String route, String content, Long parentId);
 
     @Query(value = "SELECT * FROM pages", nativeQuery = true)

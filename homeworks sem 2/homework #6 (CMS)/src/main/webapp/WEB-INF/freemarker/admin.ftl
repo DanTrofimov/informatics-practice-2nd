@@ -12,22 +12,28 @@
     <link rel="stylesheet" href="<@spring.url '/styles/edit.css' />" type="text/css">
 </head>
 <body>
-    <h2 class="title">here is an editing page:</h2>
+    <div class="admin-header">
+        <h2 class="title"><@spring.message "admin.title"/></h2>
+        <div class="langs">
+            <a href="?lang=en">EN</a>
+            <a href="?lang=ru">RU</a>
+        </div>
+    </div>
     <form method="post" action="admin">
         <div class="nameInput">
-            <label for="name">Enter name of your template:</label>
+            <label for="name"><@spring.message "admin.name.label"/></label>
             <input type="text" placeholder="Name of template" name="name" id="name">
         </div>
         <div class="nameInput">
-            <label for="parent">Enter name of template's parent:</label>
+            <label for="parent"><@spring.message "admin.parent.label"/></label>
             <input type="text" placeholder="Name of parent" name="parent" id="parent">
         </div>
         <textarea name="content">
-            Start to create your page here...
+            <@spring.message "admin.textarea.placeholder"/>
         </textarea>
         <div class="navigation">
-            <input type="submit" value="save">
-            <a href="user">cancel</a>
+            <input type="submit" value="<@spring.message "admin.button.save"/>">
+            <a href="user"><@spring.message "admin.button.cancel"/></a>
         </div>
     </form>
     <script src="<@spring.url '/scripts/init.js' />"></script>
