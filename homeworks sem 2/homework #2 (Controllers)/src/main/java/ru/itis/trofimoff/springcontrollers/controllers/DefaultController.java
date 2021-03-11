@@ -3,6 +3,7 @@ package ru.itis.trofimoff.springcontrollers.controllers;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("/tests")
 public class DefaultController {
+
+  @RequestMapping("/rest")
+  public String restTest(Model model) {
+    System.out.println(model);
+    return "tests";
+  }
 
   @RequestMapping
   public String index(ModelMap map) {
