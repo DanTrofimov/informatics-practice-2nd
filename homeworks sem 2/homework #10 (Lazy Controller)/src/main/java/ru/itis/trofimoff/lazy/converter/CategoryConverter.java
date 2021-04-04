@@ -7,15 +7,13 @@ import ru.itis.trofimoff.lazy.models.Category;
 import ru.itis.trofimoff.lazy.services.CategoryService;
 
 @Component
-public class CategoryConverter implements Converter<String, Category> {
+public class CategoryConverter implements Converter<Integer, Category> {
 
     @Autowired
     public CategoryService categoryService;
 
     @Override
-    public Category convert(String id) {
-        System.out.println(id);
-        System.out.println(categoryService.findById(Integer.parseInt(id)));
-        return categoryService.findById(Integer.parseInt(id));
+    public Category convert(Integer id) {
+        return categoryService.findById(id);
     }
 }

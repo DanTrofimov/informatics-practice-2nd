@@ -45,11 +45,11 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "/books-add", method = RequestMethod.POST)
-    public String postBooksAddPage(@ModelAttribute Book currentBook) {
+    public String postBooksAddPage(@ModelAttribute BookDto bookDto) {
 
-//        // spring сделает это под капотом
-//        Category currentCategory = categoryConverter.convert(bookDto.getCategory());
-//        Book currentBook = new Book(bookDto.getName(), currentCategory);
+        // spring сделает это под капотом
+        Category currentCategory = categoryConverter.convert(bookDto.getCategory());
+        Book currentBook = new Book(bookDto.getName(), currentCategory);
 
         bookService.saveBook(currentBook);
         return "book-add";
