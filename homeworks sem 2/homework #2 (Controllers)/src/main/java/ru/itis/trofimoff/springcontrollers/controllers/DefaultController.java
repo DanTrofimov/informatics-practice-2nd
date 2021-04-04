@@ -17,9 +17,20 @@ import java.util.Map;
 @RequestMapping("/tests")
 public class DefaultController {
 
-  @RequestMapping("/rest")
-  public String restTest(Model model) {
-    System.out.println(model);
+  @RequestMapping(value = "/rest")
+  public String restTestGet() {
+    System.out.println("something here");
+    return "tests";
+  }
+
+  @RequestMapping(value = "/rest", method = RequestMethod.POST)
+  public String restTest(@RequestBody String postPayload) {
+    System.out.println(postPayload);
+    return "tests";
+  }
+
+  @RequestMapping(value = "/rest", method = RequestMethod.GET)
+  public String restGetTest() {
     return "tests";
   }
 
