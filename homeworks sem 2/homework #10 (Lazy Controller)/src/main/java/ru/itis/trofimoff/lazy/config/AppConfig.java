@@ -1,5 +1,7 @@
 package ru.itis.trofimoff.lazy.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -13,6 +15,9 @@ import ru.itis.trofimoff.lazy.converter.CategoryConverter;
 @EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
 
+    @Autowired
+    protected ApplicationContext applicationContext;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/styles/**").addResourceLocations("/styles/");
@@ -22,6 +27,6 @@ public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new CategoryConverter());
+        registry.addConverter(applicationContext.getBean(CategoryConverter.class));
     }
 }
