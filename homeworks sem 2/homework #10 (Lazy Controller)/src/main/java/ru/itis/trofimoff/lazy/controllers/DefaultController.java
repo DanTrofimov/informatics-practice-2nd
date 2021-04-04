@@ -2,6 +2,7 @@ package ru.itis.trofimoff.lazy.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.itis.trofimoff.lazy.converter.CategoryConverter;
@@ -44,10 +45,12 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "/books-add", method = RequestMethod.POST)
-    public String postBooksAddPage(BookDto bookDto) {
-        Category currentCategory = categoryConverter.convert(bookDto.getCategory());
-        Book currentBook = new Book(bookDto.getName(), currentCategory);
-        System.out.println(currentBook.toString());
+    public String postBooksAddPage(@ModelAttribute Book currentBook) {
+
+//        // spring сделает это под капотом
+//        Category currentCategory = categoryConverter.convert(bookDto.getCategory());
+//        Book currentBook = new Book(bookDto.getName(), currentCategory);
+
         bookService.saveBook(currentBook);
         return "book-add";
     }

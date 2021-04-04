@@ -24,9 +24,4 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id")
     private Category category;
-
-    public Book(String name, Category category) {
-        this.name = name;
-        this.category = category;
-    }
 }
