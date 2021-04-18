@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DefaultContoller {
 
     @GetMapping("/table")
-    public String getTable() {
+    public String getTable(Model model) {
         return "table";
     }
 }

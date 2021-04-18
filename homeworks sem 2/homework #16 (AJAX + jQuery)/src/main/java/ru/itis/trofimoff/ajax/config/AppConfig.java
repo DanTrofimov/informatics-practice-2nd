@@ -2,6 +2,7 @@ package ru.itis.trofimoff.ajax.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -17,4 +18,14 @@ public class AppConfig implements WebMvcConfigurer {
 
         return resolver;
     }
+
+    // spring static mapping
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/styles/**").addResourceLocations("classpath:/static/styles/");
+        registry.addResourceHandler("/static/assets/**").addResourceLocations("classpath:/static/assets/");
+        registry.addResourceHandler("/static/scripts/**").addResourceLocations("classpath:/static/scripts/");
+    }
+
+
 }
