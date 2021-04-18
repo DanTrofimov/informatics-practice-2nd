@@ -17,19 +17,20 @@ public class RestController {
     @Autowired
     public UserService userService;
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
-    }
-
 //    @GetMapping("/users")
-//    public ResponseEntity<List<User>> getUsersWithPagination(@RequestParam Integer usersAmount, @RequestParam Integer offset) {
-//        return ResponseEntity.ok(userService.getAllUsersWithPagination(usersAmount, offset));
+//    public ResponseEntity<List<User>> getUsers() {
+//        return ResponseEntity.ok(userService.getAllUsers());
 //    }
 
     @DeleteMapping("/users")
     public ResponseEntity<?> removeUser(@RequestParam Integer userId) {
         userService.removeUser(userId);
         return ResponseEntity.ok().build();
+    }
+
+//  for pagination
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUsersWithPagination(@RequestParam Integer usersAmount, @RequestParam Integer offset) {
+        return ResponseEntity.ok(userService.getAllUsersWithPagination(usersAmount, offset));
     }
 }

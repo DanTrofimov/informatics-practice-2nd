@@ -11,7 +11,7 @@
     <style>
         body {
             width: auto;
-            height: auto;
+            height: 95vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,6 +27,7 @@
 <body>
         <table border="1" id="users-table">
         </table>
+        <button onclick="getUsersWithPagination()">load more</button>
     <script src="<@spring.url "/scripts/script.js"/>"></script>
 </body>
 </html>

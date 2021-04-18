@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DefaultContoller {
 
     @GetMapping("/table")
-    public String getTable(Model model) {
+    public String getTable() {
         return "table";
+    }
+
+    @GetMapping("/")
+    public String redirectTable() {
+        return "redirect:/table";
     }
 }

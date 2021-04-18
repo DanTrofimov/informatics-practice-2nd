@@ -1,16 +1,6 @@
-const CONTEXT = "http://localhost:8099/";
-const USERS_ON_PAGE = 3;
+const CONTEXT = "http://localhost:8099";
+const USERS_ON_PAGE = 2;
 let currentPage = 0;
-
-async function getUsers(){
-    await $.ajax({
-        url:  `${CONTEXT}/users`,
-        type: "GET",
-        dataType: "json",
-        success: updateTable
-    });
-    currentPage++;
-}
 
 function removeUser(userId){
     $.ajax({
@@ -29,15 +19,11 @@ function removeUser(userId){
             $(this).closest('tr').remove();
         });
 
-   // animation duration
-   setTimeout(() => {updateTable(getUsers())}, 500)
-}
-
-function updateTable(users) {
-    let table = $("#users-table");
-    table.empty();
-    let content = users.map(user => getTableRow(user));
-    table.append(content);
+    setTimeout(() => {
+        let currentUsers = getUsersWithPagination(0, USERS_ON_PAGE * currentPage);
+        addUsersLayout(currentUsers, "full");
+        // animation duration
+    }, 500)
 }
 
 function getTableRow(userData) {
@@ -48,4 +34,24 @@ function getTableRow(userData) {
             </tr>`
 }
 
-getUsers();
+
+function getUsersWithPagination(page = currentPage, usersOnPage = USERS_ON_PAGE) {
+    $.ajax({
+        url:  `${CONTEXT}/users?usersAmount=${usersOnPage}&offset=${page * usersOnPage}`,
+        type: "GET",
+        dataType: "json",
+        success: addUsersLayout
+    });
+
+    currentPage++;
+}
+
+function addUsersLayout(users, clear = "full") {
+    let table = $("#users-table");
+    if (clear === "full") table.empty();
+    let content = users.map(user => getTableRow(user));
+    table.append(content);
+}
+
+getUsersWithPagination();
+
