@@ -8,4 +8,5 @@ public interface ProductService {
     List<Product> getAllProducts();
     void removeProduct(Long id);
     void addProduct(String name, int price, int categoryId);
+    List<Product> getProductsByCategory(Long categoryId);
 }

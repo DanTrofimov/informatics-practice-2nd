@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.trofimoff.task.models.Category;
 import ru.itis.trofimoff.task.models.Product;
+import ru.itis.trofimoff.task.repositories.CategoryRepository;
 import ru.itis.trofimoff.task.repositories.ProductRepository;
 
 import java.util.List;
@@ -13,6 +14,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     public ProductRepository productRepository;
+
+    @Autowired
+    public CategoryRepository categoryRepository;
 
     @Override
     public List<Product> getAllProducts() {
@@ -25,19 +29,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(String name, int price, int categoryId) {
-        Product product;
-
-        // need to replace by converter
-        switch (categoryId) {
-            case 1:
-                product = new Product(name, price, new Category((long) categoryId, "fruits"));
-                break;
-            case 2:
-                product = new Product(name, price, new Category((long) categoryId, "vegetables"));
-                break;
-            default:
-                product = new Product(name, price, new Category((long) categoryId, "fruits"));
-        }
+        Category category = categoryRepository.getCategoryById((long)categoryId);
+        Product product = new Product(name, price, category);
         productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(Long categoryId) {
+        Category category = categoryRepository.getCategoryById(categoryId);
+        return productRepository.findAllByCategory(category);
     }
 }

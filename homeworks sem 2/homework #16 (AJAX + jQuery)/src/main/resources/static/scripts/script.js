@@ -34,7 +34,6 @@ function getTableRow(userData) {
             </tr>`
 }
 
-
 function getUsersWithPagination(page = currentPage, usersOnPage = USERS_ON_PAGE) {
     $.ajax({
         url:  `${CONTEXT}/users?usersAmount=${usersOnPage}&offset=${page * usersOnPage}`,
@@ -54,4 +53,3 @@ function addUsersLayout(users, clear = "full") {
 }
 
 getUsersWithPagination();
-
