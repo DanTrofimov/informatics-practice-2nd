@@ -1,0 +1,67 @@
+:root {
+    --main-bg-color: #0a141e;
+    --main-text-color: #e8e8e8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content {
+    max-width: 400px;
+    width: 100%;
+    word-break: break-word;
+}
+
+body {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    color: var(--main-text-color);
+    font-family: Consolas, sans-serif;
+    background: var(--main-bg-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.message-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.message-form input {
+    background-color: var(--main-bg-color);
+    border: 2px solid white;
+    color: var(--main-text-color);
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.message-form input::placeholder {
+    color: var(--main-text-color)
+}
+
+.message-form button {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    padding: 5px;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#messagesList {
+    margin: 10px 0;
+}
+
+#messagesList li {
+    margin: 4px 0;
+}
