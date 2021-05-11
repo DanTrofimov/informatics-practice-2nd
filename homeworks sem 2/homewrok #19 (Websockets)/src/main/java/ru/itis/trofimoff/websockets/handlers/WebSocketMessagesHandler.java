@@ -8,13 +8,15 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import ru.itis.trofimoff.websockets.dto.Message;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
 public class WebSocketMessagesHandler extends TextWebSocketHandler {
 
-    private static final Map<String, WebSocketSession> sessions = new HashMap<>();
+    // replace by 0 & 1 & 2
+    private static final boolean[][] field = {
+            { false, false, false },
+            { false, false, false },
+            { false, false, false }
+    };
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -22,13 +24,40 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage jsonMessage) throws Exception {
         Message message = objectMapper.readValue(jsonMessage.getPayload(), Message.class);
-        // смотрю, не запоминал ли я еще такую сессию с такой id страницы
-        if (!sessions.containsKey(message.getFrom())) {
-            sessions.put(message.getFrom(), session);
+
+        field[message.getY()][message.getX()] = true;
+
+        int[] coordinates = generateCoordinates();
+        Message response;
+
+        if (coordinates[0] == -1) {
+            response = new Message(coordinates[0], coordinates[1], "gameOver");
+            session.sendMessage(new TextMessage(objectMapper.writeValueAsString(response)));
+            session.close();
+        } else {
+            response = new Message(coordinates[0], coordinates[1], "ok");
+            session.sendMessage(new TextMessage(objectMapper.writeValueAsString(response)));
         }
 
-        for (WebSocketSession currentSession : sessions.values()) {
-            currentSession.sendMessage(jsonMessage);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(field[i][j]);
+            }
+            System.out.println();
         }
+
+        System.out.println(session.isOpen());
+    }
+
+    public int[] generateCoordinates() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (!field[i][j]) {
+                    field[i][j] = true;
+                    return new int[]{ i, j };
+                }
+            }
+        }
+        return new int[] { -1, -1 };
     }
 }

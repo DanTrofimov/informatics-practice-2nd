@@ -10,15 +10,12 @@ public class IndexController {
 
     @GetMapping("/")
     public String rootMapping() {
-        return "redirect:/index";
+        return "redirect:/game";
     }
 
-    @GetMapping("/index")
-    public String getIndexPage(Model model) {
-        model.addAttribute("pageId", UUID.randomUUID().toString());
-        return "index";
+    @GetMapping("/game")
+    public String getGame(Model model) {
+        return "game";
     }
-
-
 }
 

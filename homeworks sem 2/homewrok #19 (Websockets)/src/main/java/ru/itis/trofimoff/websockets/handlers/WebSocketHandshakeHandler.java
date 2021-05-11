@@ -21,7 +21,7 @@ public class WebSocketHandshakeHandler implements HandshakeHandler {
     @Override
     public boolean doHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse, WebSocketHandler webSocketHandler, Map<String, Object> map) throws HandshakeFailureException {
         ServletServerHttpRequest request = (ServletServerHttpRequest)serverHttpRequest;
-        String cookie = WebUtils.getCookie(request.getServletRequest(), "AUTH").getValue();
+        String cookie = WebUtils.getCookie(request.getServletRequest(), "IDENTITY").getValue();
         if (cookie.equals("1234")) {
             return handshakeHandler.doHandshake(serverHttpRequest, serverHttpResponse, webSocketHandler, map);
         } else {
