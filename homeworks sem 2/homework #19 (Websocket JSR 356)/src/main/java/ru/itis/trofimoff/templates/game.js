@@ -12,6 +12,8 @@ let websocket;
 
 let items = document.querySelectorAll(".item");
 
+let gameOverMessage = document.getElementById("message");
+
 items.forEach(item => {
    item.addEventListener("click", check.bind(item));
 });
@@ -28,6 +30,7 @@ function receiveMessage(response) {
     let json = JSON.parse(response.data);
     if (json.gameStatus === "gameOver") {
         gameStatus = json.gameStatus;
+        gameOverMessage.style.opacity = "1";
         return;
     }
     let targetItem = document.getElementById(convertToId(json));
