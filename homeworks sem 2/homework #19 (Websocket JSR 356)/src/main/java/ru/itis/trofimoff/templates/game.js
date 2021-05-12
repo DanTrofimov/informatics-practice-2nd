@@ -1,4 +1,4 @@
-const HOST = "ws://localhost:8080/chat";
+const HOST = "ws://localhost:8099/game";
 
 let gameStatus = "ok";
 
@@ -24,6 +24,7 @@ function connect() {
 }
 
 function receiveMessage(response) {
+    console.log(response);
     let json = JSON.parse(response.data);
     if (json.gameStatus === "gameOver") {
         gameStatus = json.gameStatus;
