@@ -3,6 +3,8 @@ package ru.itis.trofimoff;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.tyrus.server.Server;
+import ru.itis.trofimoff.exceptions.CantStartServerException;
+import ru.itis.trofimoff.exceptions.IncorrectResponseException;
 import ru.itis.trofimoff.model.Message;
 import ru.itis.trofimoff.services.GameService;
 
@@ -13,15 +15,17 @@ import java.util.Scanner;
 @ServerEndpoint(value = "/game")
 public class GameServer {
 
+    public ObjectMapper objectMapper;
+    public GameService gameService;
+    public final int PORT = 8099;
+    public final String HOST = "localhost";
+
     public static void main(String[] args) {
         GameServer server = new GameServer();
     }
 
-    public ObjectMapper objectMapper;
-    public GameService gameService;
-
     public GameServer() {
-        Server server = new Server("localhost", 8099, "", null, this.getClass());
+        Server server = new Server(HOST, PORT, "", null, this.getClass());
         objectMapper = new ObjectMapper();
         gameService = new GameService();
 
@@ -62,7 +66,7 @@ public class GameServer {
             response = objectMapper.writeValueAsString(message);
             System.out.println(response);
         } catch (JsonProcessingException ex) {
-            System.out.println(ex.getMessage());
+            throw new IncorrectResponseException("Can't correctly convert response");
         }
 
         return response;

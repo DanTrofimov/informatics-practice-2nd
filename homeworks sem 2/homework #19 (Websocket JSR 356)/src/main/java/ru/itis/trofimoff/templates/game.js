@@ -3,9 +3,9 @@ const HOST = "ws://localhost:8099/game";
 let gameStatus = "ok";
 
 let field = [
-    [false, false, false],
-    [false, false, false],
-    [false, false, false]
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
 ];
 
 let websocket;
@@ -28,14 +28,25 @@ function connect() {
 function receiveMessage(response) {
     console.log(response);
     let json = JSON.parse(response.data);
-    if (json.gameStatus === "gameOver") {
+    if (json.gameStatus !== "ok") {
         gameStatus = json.gameStatus;
+
+        switch (gameStatus) {
+            case "clientWin":
+                gameOverMessage.innerText = "YOU WIN";
+                break;
+            case "serverWin":
+                gameOverMessage.innerText = "COMPUTER WIN";
+                break;
+            default:
+                gameOverMessage.innerText = "DRAW";
+        }
+
         gameOverMessage.style.opacity = "1";
-        return;
     }
     let targetItem = document.getElementById(convertToId(json));
     changeInnerServer.call(targetItem);
-    field[json.x][json.y] = true;
+    field[json.x][json.y] = -1; // server
 }
 
 function changeInnerPlayer() {
@@ -52,9 +63,9 @@ function sendRequest(data) {
 
 function check() {
     let coordinates = parseId(this.getAttribute("id"));
-    if (!field[coordinates.y][coordinates.x] && gameStatus !== "gameOver") {
+    if (field[coordinates.y][coordinates.x] === 0 && gameStatus === "ok") {
         changeInnerPlayer.call(this);
-        field[coordinates.y][coordinates.x] = true;
+        field[coordinates.y][coordinates.x] = 1; // client
         sendRequest(coordinates);
     }
 }
@@ -69,3 +80,8 @@ function parseId(id) {
 function convertToId(response) {
     return "" + response.x + response.y
 }
+
+// logs
+setInterval(() => {
+    if (gameStatus === "ok") console.log(field)
+}, 5000);

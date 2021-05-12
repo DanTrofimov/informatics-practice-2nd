@@ -3,14 +3,17 @@ package ru.itis.trofimoff.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.itis.trofimoff.exceptions.IncorrectResponseException;
 import ru.itis.trofimoff.model.Message;
 
 public class GameService {
     // replace by 0 & 1 & 2
-    private static final boolean[][] field = {
-            { false, false, false },
-            { false, false, false },
-            { false, false, false }
+    // 1 - client
+    // 2 - server
+    private static final int[][] field = {
+            { 0, 0, 0 },
+            { 0, 0, 0 },
+            { 0, 0, 0 },
     };
 
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -21,16 +24,16 @@ public class GameService {
             Message message = new Message(actualObj.get("x").asInt(), actualObj.get("y").asInt(), "ok");
             System.out.println(message);
 
-            field[message.getY()][message.getX()] = true;
+            field[message.getY()][message.getX()] = 1; // client
 
             int[] coordinates = generateCoordinates();
             Message response;
 
-            if (coordinates[0] == -1) {
-                response = new Message(coordinates[0], coordinates[1], "gameOver");
-            } else {
-                response = new Message(coordinates[0], coordinates[1], "ok");
-            }
+//            if (coordinates[0] == -1) {
+//                response = new Message(coordinates[0], coordinates[1], "gameOver");
+//            } else {
+                response = new Message(coordinates[0], coordinates[1], gameStatusChecker());
+//            }
 
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -40,20 +43,65 @@ public class GameService {
             }
             return response;
         } catch (JsonProcessingException ex) {
-            System.out.println(ex.getMessage());
-            return null;
+            throw new IncorrectResponseException("Can't convert correctly response");
         }
     }
 
     public int[] generateCoordinates() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (!field[i][j]) {
-                    field[i][j] = true;
+                if (field[i][j] == 0) {
+                    field[i][j] = -1; // server
                     return new int[]{ i, j };
                 }
             }
         }
         return new int[] { -1, -1 };
+    }
+
+    public String gameStatusChecker() {
+        // rows check
+        for (int i = 0; i < 3; i++) {
+            int sum = 0;
+            for (int j = 0; j < 3; j++) {
+                sum+=field[i][j];
+            }
+            switch (sum) {
+                case 3:
+                    return "clientWin";
+                case -3:
+                    return "serverWin";
+            }
+        }
+        // columns check
+        for (int i = 0; i < 3; i++) {
+            int sum = 0;
+            for (int j = 0; j < 3; j++) {
+                sum+=field[j][i];
+            }
+            switch (sum) {
+                case 3:
+                    return "clientWin";
+                case -3:
+                    return "serverWin";
+            }
+        }
+        // diagonals check
+        int sum = field[0][0] + field[1][1] + field[2][2];
+        switch (sum) {
+            case 3:
+                return "clientWin";
+            case -3:
+                return "serverWin";
+        };
+
+        sum = field[0][2] + field[1][1] + field[2][0];
+        switch (sum) {
+            case 3:
+                return "clientWin";
+            case -3:
+                return "serverWin";
+        }
+        return "ok";
     }
 }
