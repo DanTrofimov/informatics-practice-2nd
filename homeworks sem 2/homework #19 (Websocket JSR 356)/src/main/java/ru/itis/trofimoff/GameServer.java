@@ -45,7 +45,7 @@ public class GameServer {
     }
 
     @OnOpen
-    public void onOpen(Session session, EndpointConfig config) {
+    public void onOpen(Session session) {
         System.out.println("Got new connection: " + session.getId());
     }
 
@@ -64,7 +64,6 @@ public class GameServer {
 
         try {
             response = objectMapper.writeValueAsString(message);
-            System.out.println(response);
         } catch (JsonProcessingException ex) {
             throw new IncorrectResponseException("Can't correctly convert response");
         }

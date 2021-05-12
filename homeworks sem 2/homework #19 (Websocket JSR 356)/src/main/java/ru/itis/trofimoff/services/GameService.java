@@ -7,9 +7,8 @@ import ru.itis.trofimoff.exceptions.IncorrectResponseException;
 import ru.itis.trofimoff.model.Message;
 
 public class GameService {
-    // replace by 0 & 1 & 2
     // 1 - client
-    // 2 - server
+    // -1 - server
     private static final int[][] field = {
             { 0, 0, 0 },
             { 0, 0, 0 },

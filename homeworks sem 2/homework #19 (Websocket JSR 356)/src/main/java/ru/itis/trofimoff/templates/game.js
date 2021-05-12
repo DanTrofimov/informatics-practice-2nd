@@ -14,11 +14,11 @@ let items = document.querySelectorAll(".item");
 
 let gameOverMessage = document.getElementById("message");
 
-items.forEach(item => {
-   item.addEventListener("click", check.bind(item));
-});
-
 window.onload = connect;
+
+items.forEach(item => {
+    item.addEventListener("click", check.bind(item));
+});
 
 function connect() {
     webSocket = new WebSocket(HOST);
