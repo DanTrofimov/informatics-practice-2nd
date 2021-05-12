@@ -3,6 +3,7 @@ package ru.itis.trofimoff;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.glassfish.tyrus.server.Server;
+import ru.itis.trofimoff.exceptions.CantCloseSessionException;
 import ru.itis.trofimoff.exceptions.CantStartServerException;
 import ru.itis.trofimoff.exceptions.IncorrectResponseException;
 import ru.itis.trofimoff.model.Message;
@@ -10,6 +11,7 @@ import ru.itis.trofimoff.services.GameService;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 import java.util.Scanner;
 
 @ServerEndpoint(value = "/game")
@@ -55,7 +57,7 @@ public class GameServer {
     }
 
     @OnMessage
-    public String onMessage(String request, Session session) {
+    public String onMessage(String request, Session session)  {
         System.out.println("Got message from " + session.getId() + ": " + request);
 
         Message message = gameService.handleRequest(request);
@@ -67,6 +69,16 @@ public class GameServer {
         } catch (JsonProcessingException ex) {
             throw new IncorrectResponseException("Can't correctly convert response");
         }
+
+        try {
+            if (!message.getGameStatus().equals("ok")) {
+                session.getBasicRemote().sendText(response);
+                session.close();
+            }
+        } catch (IOException ex) {
+            throw new CantCloseSessionException("Troubles with closing session");
+        }
+
 
         return response;
     }
