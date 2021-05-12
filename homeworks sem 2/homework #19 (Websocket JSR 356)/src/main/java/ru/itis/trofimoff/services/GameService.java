@@ -29,18 +29,16 @@ public class GameService {
             int[] coordinates = generateCoordinates();
             Message response;
 
-//            if (coordinates[0] == -1) {
-//                response = new Message(coordinates[0], coordinates[1], "gameOver");
-//            } else {
-                response = new Message(coordinates[0], coordinates[1], gameStatusChecker());
-//            }
+            response = new Message(coordinates[0], coordinates[1], gameStatusChecker());
 
+            // field logs
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     System.out.print(field[i][j]);
                 }
                 System.out.println();
             }
+
             return response;
         } catch (JsonProcessingException ex) {
             throw new IncorrectResponseException("Can't convert correctly response");
