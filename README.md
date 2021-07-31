@@ -1,2 +1,1 @@
-# informatics-practice-2nd
-rep for inf tasks
+rep for inf tasks from the 2nd course
